@@ -75,7 +75,7 @@ function getAllFavorites(req, res, next) {
 function deleteFavorite(req, res, next) {
   var movie_id = parseInt(req.params.movie_id);
   var user_id = parseInt(req.params.id);
-  db.result('delete from favorites where user_id = $1 and movie_id = $2', [id, movie_id]).then(function(result) {
+  db.result('delete from favorites where user_id = $1 and movie_id = $2', [user_id, movie_id]).then(function(result) {
     res.status(200)
     .json({status: 'success', message: `${result.rowCount} row was deleted.`})
   })

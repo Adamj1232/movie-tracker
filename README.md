@@ -6,7 +6,7 @@
   * Using PostgreSQL
   * Setting up steps:
     * `npm install`
-    * `createdb` - assuming you have postgreSQL
+    * `createdb` - if you don't have postgresSQl go install it here: http://postgresapp.com/ 
     * `psql -f ./src/sql/users.sql`
     * `npm start` - visit `/api/users` - should see a json response.
   * 2 APIs - MovieDB and your very own api
