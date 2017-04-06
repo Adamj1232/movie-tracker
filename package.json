@@ -1,11 +1,15 @@
 {
   "name": "example-api",
   "version": "1.0.0",
-  "description": "MeatMeet",
+  "description": "MovieTracker",
+  "engines": {
+    "node": "6.4.0",
+    "npm": "3.10.x"
+  },
   "scripts": {
     "build": "webpack --config ./webpack.config.js",
     "dev-server": "webpack-dev-server --hot --inline --content-base --history-api-fallback",
-    "start": "npm build && node src/app.js",
+    "start": "node src/app.js",
     "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress"
   },
   "keywords": [],
