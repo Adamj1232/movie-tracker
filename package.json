@@ -12,7 +12,7 @@
     "start": "node src/app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Taylor Moore",
   "license": "ISC",
   "dependencies": {
     "bluebird": "^3.3.4",
