@@ -15,7 +15,7 @@ if (process.env.NODE_ENV !== 'production') {
   const webpack = require('webpack');
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
-  const config = require('../webpack.config.js');
+  const config = require('./webpack.config.js');
   const compiler = webpack(config);
 
   app.use(webpackHotMiddleware(compiler));
@@ -24,13 +24,13 @@ if (process.env.NODE_ENV !== 'production') {
     publicPath: config.output.publicPath
   }));
 }
-app.use('/assets', express.static(path.join(__dirname, '../app/assets')));
+app.use('/assets', express.static(path.join(__dirname, '/app/assets')));
 app.use(express.static('build'));
 
-app.get('/', function (req, res) { res.sendFile(path.join(__dirname, '/../index.html')) });
+app.get('/', function (req, res) { res.sendFile(path.join(__dirname, '/index.html')) });
 
 app.use('/api', users);
-app.get('/*', function (req, res) { res.sendFile(path.join(__dirname, '/../index.html')) });
+app.get('/*', function (req, res) { res.sendFile(path.join(__dirname, '/index.html')) });
 
 app.listen(port);
 
