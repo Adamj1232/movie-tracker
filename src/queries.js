@@ -1,7 +1,6 @@
 var promise = require('bluebird');
 
 var options = {
-  // Initialization Options
   promiseLib: promise
 };
 
@@ -9,7 +8,6 @@ var pgp = require('pg-promise')(options);
 var connectionString = 'postgres://localhost:5432/users';
 var db = pgp(connectionString);
 
-// add query functions
 function getAllUsers(req, res, next) {
   db.any('select * from users')
     .then(function(data) {
@@ -83,9 +81,6 @@ function deleteFavorite(req, res, next) {
     return next(err);
   })
 }
-
-
-
 
 module.exports = {
   getAllUsers: getAllUsers,
