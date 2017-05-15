@@ -50,11 +50,17 @@
     * Flash "Email and Password do not match" - if password is incorrect
   * Ability to create a user.
     * Flash "Email has already been used" - if email has been taken
-  * Should only take legit emails - regex - Extension
-
+  * The user has the ability to sign out. 
+  
 ##### Iteration 2: Favorites
   * Each movie should be displayed with a favorite button.
   * If the user is not signed in and clicks on a favorite button the user will be prompted with the request to create an account.
-  * Validate favorites before adding to db. Aka does that user already have the movie stored as favorites.
+  * Validate favorites before adding to db. Aka does that user already have the movie stored as favorites. There should be no duplicates. 
   * If the user visits `/favorites` they should see a list of all their favorite movies.
-  * Once on `/favorites` the user should have the option to delete the movie.
+  * The user should be able to delete favorites from `/favorites` or `/`.
+  * Favorite movies should have a visual indication on `/`.
+
+Extensions:
+  * A user stays signed in after refreshing the page. *Hint:* You will probably use localStorage. 
+  * Should only take real email addresses *Hint:* Look into regular expressions
+  
