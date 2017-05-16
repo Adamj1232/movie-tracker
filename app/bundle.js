@@ -21879,9 +21879,8 @@
 	        _react2.default.createElement(
 	          'h1',
 	          null,
-	          'Movie Watcher'
-	        ),
-	        this.props.children
+	          'JACKS Movie Watcher'
+	        )
 	      );
 	    }
 	  }]);
