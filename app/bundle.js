@@ -65,7 +65,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _movieIndex = __webpack_require__(184);
+	var _movieIndex = __webpack_require__(187);
 	
 	var _movieIndex2 = _interopRequireDefault(_movieIndex);
 	
@@ -21853,6 +21853,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _apiCall = __webpack_require__(184);
+	
+	var _apiCall2 = _interopRequireDefault(_apiCall);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21871,6 +21875,11 @@
 	  }
 	
 	  _createClass(App, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      (0, _apiCall2.default)();
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -21879,7 +21888,7 @@
 	        _react2.default.createElement(
 	          'h1',
 	          null,
-	          'JACKS Movie Watcher'
+	          'Adams Movie Watcher'
 	        )
 	      );
 	    }
@@ -21892,6 +21901,74 @@
 
 /***/ }),
 /* 184 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.fetchMovies = undefined;
+	
+	var _key = __webpack_require__(185);
+	
+	var _key2 = _interopRequireDefault(_key);
+	
+	var _cleaner = __webpack_require__(186);
+	
+	var _cleaner2 = _interopRequireDefault(_cleaner);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var fetchMovies = exports.fetchMovies = function fetchMovies() {
+	  var movieApi = 'https://api.themoviedb.org/3/movie/now_playing?api_key=' + _key2.default + '&language=en-US&page=1';
+	
+	  return fetch(movieApi).then(function (resp) {
+	    return resp.json();
+	  }).then(function (moviesJSON) {
+	    console.log((0, _cleaner2.default)(moviesJSON));
+	    return (0, _cleaner2.default)(moviesJSON);
+	  });
+	};
+
+/***/ }),
+/* 185 */
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = 'de2f6f839f875c177539f24f874dc62e';
+
+/***/ }),
+/* 186 */
+/***/ (function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var cleaner = exports.cleaner = function cleaner(data) {
+	  return data.results.reduce(function (acc, movie) {
+	    if (!acc[movie.title]) {
+	      acc[movie.title] = {
+	        title: movie.title,
+	        poster: "https://image.tmdb.org/t/p/w500" + movie.poster_path,
+	        overview: movie.overview,
+	        votingAverage: movie.voting_average,
+	        voteCount: movie.vote_count,
+	        releaseData: movie.release_date
+	      };
+	    }
+	    return acc;
+	  }, {});
+	};
+
+/***/ }),
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
