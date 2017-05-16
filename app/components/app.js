@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
-import fetchMovies from '../helper/apiCall'
-import apiKey from '../key.js'
-import {cleaner} from '../helper/cleaner.js'
+import MovieIndexContainer from './movieIndexContainer'
 
 export default class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
+
 
   render() {
     return (
       <div>
         <h1>Jacks Movie Watcher</h1>
-
       </div>
     )
   }

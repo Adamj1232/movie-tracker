@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
 export default class MovieIndex extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
+
 
   render() {
     return (
