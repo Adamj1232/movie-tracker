@@ -3,4 +3,4 @@ import ReactDOM from 'react-dom';
 import App from './components/app';
 import MovieIndex from './components/movieIndex';
 
-ReactDOM.render(App, document.getElementById('main'))
+ReactDOM.render(<App />, document.getElementById('main'))
