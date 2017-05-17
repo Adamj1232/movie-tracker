@@ -69,13 +69,13 @@
 	
 	var _redux = __webpack_require__(198);
 	
-	var _reduxThunk = __webpack_require__(227);
+	var _reduxThunk = __webpack_require__(228);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
-	var _index = __webpack_require__(228);
+	var _index = __webpack_require__(229);
 	
-	var _index2 = __webpack_require__(232);
+	var _index2 = __webpack_require__(233);
 	
 	var _index3 = _interopRequireDefault(_index2);
 	
@@ -84,8 +84,6 @@
 	var devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 	
 	// import './main.css';
-	// import React from 'react';
-	// import { render } from 'react-dom'
 	
 	var store = (0, _redux.createStore)(_index3.default, devTools, (0, _redux.applyMiddleware)(_reduxThunk2.default));
 	
@@ -21880,6 +21878,10 @@
 	
 	var _MovieGridContainer2 = _interopRequireDefault(_MovieGridContainer);
 	
+	var _NavBar = __webpack_require__(227);
+	
+	var _NavBar2 = _interopRequireDefault(_NavBar);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21903,6 +21905,7 @@
 	      return _react2.default.createElement(
 	        'section',
 	        null,
+	        _react2.default.createElement(_NavBar2.default, null),
 	        _react2.default.createElement(_MovieGridContainer2.default, null)
 	      );
 	    }
@@ -24353,25 +24356,25 @@
 	      var _this2 = this;
 	
 	      var movies = this.props.movies;
-	      // console.log(this.props.movies)
-	      // if (!this.props.movies) {
-	      //   return (
-	      //    <h4>Guess there's nothing worth seeing....</h4>
-	      //   )
-	      // }
 	
-	      console.log(this.props.movies);
+	      if (!this.props.movies) {
+	        return _react2.default.createElement(
+	          'h4',
+	          null,
+	          'Guess theres nothing worth seeing....'
+	        );
+	      }
 	      return _react2.default.createElement(
 	        'section',
 	        { id: 'movie-grid' },
-	        Object.keys(this.props.movies).map(function (key, movie) {
-	          console.log('card data', _this2.props.movies[movie]);
+	        Object.keys(this.props.movies).map(function (movie, index) {
 	          return _react2.default.createElement(_MovieCard.MovieCard, { title: _this2.props.movies[movie].title,
 	            poster: _this2.props.movies[movie].poster,
 	            overview: _this2.props.movies[movie].overview,
 	            releaseDate: _this2.props.movies[movie].releaseDate,
 	            voteCount: _this2.props.movies[movie].voteCount,
-	            votingAverage: _this2.props.movies[movie].votingAverage });
+	            votingAverage: _this2.props.movies[movie].votingAverage,
+	            key: index });
 	        })
 	      );
 	    }
@@ -24403,6 +24406,9 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	// import './MovieCard.css';
+	
+	
 	var MovieCard = exports.MovieCard = function MovieCard(_ref) {
 	  var title = _ref.title,
 	      poster = _ref.poster,
@@ -24411,14 +24417,18 @@
 	      voteCount = _ref.voteCount,
 	      votingAverage = _ref.votingAverage;
 	
-	  console.log(title);
 	  return _react2.default.createElement(
 	    'article',
-	    null,
+	    { className: 'movie-card' },
 	    _react2.default.createElement(
 	      'p',
 	      null,
 	      title
+	    ),
+	    _react2.default.createElement(
+	      'button',
+	      null,
+	      'Favorite'
 	    ),
 	    _react2.default.createElement('img', { className: 'movie-poster',
 	      alt: title,
@@ -24431,16 +24441,19 @@
 	    _react2.default.createElement(
 	      'p',
 	      null,
+	      'Release Date: ',
 	      releaseDate
 	    ),
 	    _react2.default.createElement(
 	      'p',
 	      null,
+	      'Vote Count: ',
 	      voteCount
 	    ),
 	    _react2.default.createElement(
 	      'p',
 	      null,
+	      'Vote Average: ',
 	      votingAverage
 	    )
 	  );
@@ -24452,11 +24465,55 @@
 	  overview: _propTypes2.default.string.isRequired,
 	  releaseDate: _propTypes2.default.string.isRequired,
 	  voteCount: _propTypes2.default.number.isRequired,
-	  votingAverage: _propTypes2.default.string.isRequired
+	  votingAverage: _propTypes2.default.number.isRequired
 	};
 
 /***/ }),
 /* 227 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.NavBar = undefined;
+	
+	var _react = __webpack_require__(2);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var NavBar = exports.NavBar = function NavBar() {
+	  return _react2.default.createElement(
+	    "section",
+	    { className: "nav-bar" },
+	    _react2.default.createElement(
+	      "button",
+	      null,
+	      "Login"
+	    ),
+	    _react2.default.createElement(
+	      "button",
+	      null,
+	      "Create Account"
+	    ),
+	    _react2.default.createElement(
+	      "button",
+	      null,
+	      "Favorites"
+	    ),
+	    _react2.default.createElement(
+	      "button",
+	      null,
+	      "Home"
+	    )
+	  );
+	};
+
+/***/ }),
+/* 228 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -24484,7 +24541,7 @@
 	exports['default'] = thunk;
 
 /***/ }),
-/* 228 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24494,11 +24551,11 @@
 	});
 	exports.retrieveMovies = exports.getMovies = undefined;
 	
-	var _apiCall = __webpack_require__(229);
+	var _apiCall = __webpack_require__(230);
 	
 	var _apiCall2 = _interopRequireDefault(_apiCall);
 	
-	var _cleaner = __webpack_require__(231);
+	var _cleaner = __webpack_require__(232);
 	
 	var _cleaner2 = _interopRequireDefault(_cleaner);
 	
@@ -24522,7 +24579,7 @@
 	};
 
 /***/ }),
-/* 229 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24534,7 +24591,7 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _key = __webpack_require__(230);
+	var _key = __webpack_require__(231);
 	
 	var _key2 = _interopRequireDefault(_key);
 	
@@ -24549,9 +24606,9 @@
 	        title: movie.title,
 	        poster: 'https://image.tmdb.org/t/p/w500' + movie.poster_path,
 	        overview: movie.overview,
-	        votingAverage: movie.voting_average,
+	        votingAverage: movie.vote_average,
 	        voteCount: movie.vote_count,
-	        releaseData: movie.release_date
+	        releaseDate: movie.release_date
 	      };
 	    }
 	    return acc;
@@ -24582,7 +24639,7 @@
 	exports.default = apiCall;
 
 /***/ }),
-/* 230 */
+/* 231 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -24593,7 +24650,7 @@
 	exports.default = 'de2f6f839f875c177539f24f874dc62e';
 
 /***/ }),
-/* 231 */
+/* 232 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -24618,7 +24675,7 @@
 	};
 
 /***/ }),
-/* 232 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24629,11 +24686,11 @@
 	
 	var _redux = __webpack_require__(198);
 	
-	var _favoritesReducer = __webpack_require__(233);
+	var _favoritesReducer = __webpack_require__(234);
 	
 	var _favoritesReducer2 = _interopRequireDefault(_favoritesReducer);
 	
-	var _moviesReducer = __webpack_require__(234);
+	var _moviesReducer = __webpack_require__(235);
 	
 	var _moviesReducer2 = _interopRequireDefault(_moviesReducer);
 	
@@ -24647,7 +24704,7 @@
 	exports.default = rootReducer;
 
 /***/ }),
-/* 233 */
+/* 234 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -24673,7 +24730,7 @@
 	exports.default = favorites;
 
 /***/ }),
-/* 234 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24682,7 +24739,7 @@
 	  value: true
 	});
 	
-	var _cleaner = __webpack_require__(231);
+	var _cleaner = __webpack_require__(232);
 	
 	var _cleaner2 = _interopRequireDefault(_cleaner);
 	
