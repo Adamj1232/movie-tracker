@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MovieGridContainer from './moviegrid-container'
+import MovieGridContainer from './MovieGridContainer'
 
 export default class App extends Component {
   constructor() {
@@ -8,9 +8,9 @@ export default class App extends Component {
 
   render() {
     return (
-      <div>
+      <section>
         <MovieGridContainer />
-      </div>
+      </section>
     )
   }
 }

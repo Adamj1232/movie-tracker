@@ -1,9 +1,9 @@
 import { connect } from 'react-redux'
-import MovieGrid from './movieGrid'
+import MovieGrid from './MovieGrid'
 
 const mapStateToProps = (state) => {
-  console.log(state);
-  return { movies: state.movies }
+  console.log('movieGridContainer', state.movieReducer)
+  return { movies: state.movieReducer }
 }
 
 const mapDispatchToProps=(dispatch) => {
