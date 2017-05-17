@@ -1,11 +1,8 @@
-#main h1 {
-  background-color: blue;
-}
 
 #main {
   text-align: center;
 }
 
 .movie-card {
-  border: 1px solid chartreuse;
+  border: 1px solid black;
 }

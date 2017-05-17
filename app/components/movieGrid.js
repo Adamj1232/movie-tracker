@@ -11,7 +11,7 @@ export default class MovieGrid extends Component {
     const { movies } = this.props;
     if (!this.props.movies) {
       return (
-       <h4>Guess there's nothing worth seeing....</h4>
+       <h4>Guess theres nothing worth seeing....</h4>
       )
     }
     return (
@@ -23,7 +23,8 @@ export default class MovieGrid extends Component {
                        overview={this.props.movies[movie].overview}
                        releaseDate={this.props.movies[movie].releaseDate}
                        voteCount={this.props.movies[movie].voteCount}
-                       votingAverage={this.props.movies[movie].votingAverage} />
+                       votingAverage={this.props.movies[movie].votingAverage}
+                       key={index}/>
           )
         }) }
       </section>

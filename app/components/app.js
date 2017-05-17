@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MovieGridContainer from './MovieGridContainer'
+import { NavBar } from './NavBar'
 
 export default class App extends Component {
   constructor() {
@@ -9,6 +10,7 @@ export default class App extends Component {
   render() {
     return (
       <section>
+        <NavBar />
         <MovieGridContainer />
       </section>
     )
