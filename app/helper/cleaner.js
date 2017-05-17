@@ -7,7 +7,7 @@ export const cleaner = (data) => {
         overview: movie.overview,
         votingAverage: movie.voting_average,
         voteCount: movie.vote_count,
-        releaseData: movie.release_date
+        releaseDate: movie.release_date
       }
     }
     return acc

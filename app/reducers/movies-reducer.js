@@ -1,10 +1,13 @@
-const movies = (state=[], action) => {
-  switch(action.type){
-    case 'RETRIEVED_MOVIES':
-      return [...state, ...action.movies.results]
-    default:
-      return state
+import cleaner from '../helper/cleaner'
+
+const movieReducer = (state={}, action) => {
+  console.log('movieReducer', action.movies);
+  switch (action.type){
+  case 'RETRIEVED_MOVIES':
+    return Object.assign({}, state, action.movies)
+  default:
+    return state
   }
 }
 
-export default movies
+export default movieReducer
