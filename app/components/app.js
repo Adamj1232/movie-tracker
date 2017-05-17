@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MovieGridContainer from './MovieGridContainer'
 import { NavBar } from './NavBar'
 import CreateUserContainer from './CreateUserContainer'
+import LoginPageContainer from './LoginPageContainer'
 
 
 export default class App extends Component {
@@ -14,6 +15,7 @@ export default class App extends Component {
       <section>
         <NavBar />
         <CreateUserContainer/>
+        <LoginPageContainer/>
         <MovieGridContainer />
       </section>
     )
