@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// import './MovieCard.css';
 
 
 export const MovieCard = ({ title, poster, overview, releaseDate, voteCount, votingAverage }) => {
   return (
     <article className="movie-card">
       <p>{title}</p>
+      <button>Favorite</button>
       <img className="movie-poster"
            alt={title}
            src={poster} />
