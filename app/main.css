@@ -5,3 +5,7 @@
 #main {
   text-align: center;
 }
+
+.movie-card {
+  border: 1px solid chartreuse;
+}

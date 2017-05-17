@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
 export const MovieCard = ({ title, poster, overview, releaseDate, voteCount, votingAverage }) => {
-  console.log(title)
   return (
-    <article>
+    <article className="movie-card">
       <p>{title}</p>
       <img className="movie-poster"
            alt={title}
            src={poster} />
       <p>{overview}</p>
-      <p>{releaseDate}</p>
-      <p>{voteCount}</p>
-      <p>{votingAverage}</p>
+      <p>Release Date: {releaseDate}</p>
+      <p>Vote Count: {voteCount}</p>
+      <p>Vote Average: {votingAverage}</p>
     </article>
   )
 }
@@ -23,5 +23,5 @@ MovieCard.propTypes = {
   overview: PropTypes.string.isRequired,
   releaseDate: PropTypes.string.isRequired,
   voteCount: PropTypes.number.isRequired,
-  votingAverage: PropTypes.string.isRequired,
+  votingAverage: PropTypes.number.isRequired,
 }

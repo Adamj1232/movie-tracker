@@ -61,21 +61,21 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _app = __webpack_require__(183);
+	var _App = __webpack_require__(183);
 	
-	var _app2 = _interopRequireDefault(_app);
+	var _App2 = _interopRequireDefault(_App);
 	
 	var _reactRedux = __webpack_require__(185);
 	
 	var _redux = __webpack_require__(198);
 	
-	var _reduxThunk = __webpack_require__(226);
+	var _reduxThunk = __webpack_require__(227);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
-	var _index = __webpack_require__(227);
+	var _index = __webpack_require__(228);
 	
-	var _index2 = __webpack_require__(230);
+	var _index2 = __webpack_require__(232);
 	
 	var _index3 = _interopRequireDefault(_index2);
 	
@@ -93,7 +93,7 @@
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRedux.Provider,
 	  { store: store },
-	  _react2.default.createElement(_app2.default, null)
+	  _react2.default.createElement(_App2.default, null)
 	), document.getElementById('main'));
 
 /***/ }),
@@ -21876,9 +21876,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _moviegridContainer = __webpack_require__(184);
+	var _MovieGridContainer = __webpack_require__(184);
 	
-	var _moviegridContainer2 = _interopRequireDefault(_moviegridContainer);
+	var _MovieGridContainer2 = _interopRequireDefault(_MovieGridContainer);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -21901,9 +21901,9 @@
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'div',
+	        'section',
 	        null,
-	        _react2.default.createElement(_moviegridContainer2.default, null)
+	        _react2.default.createElement(_MovieGridContainer2.default, null)
 	      );
 	    }
 	  }]);
@@ -21925,26 +21925,26 @@
 	
 	var _reactRedux = __webpack_require__(185);
 	
-	var _movieGrid = __webpack_require__(225);
+	var _MovieGrid = __webpack_require__(225);
 	
-	var _movieGrid2 = _interopRequireDefault(_movieGrid);
+	var _MovieGrid2 = _interopRequireDefault(_MovieGrid);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var mapStateToProps = function mapStateToProps(state) {
-	  console.log(state);
-	  return { movies: state.movies };
+	  console.log('movieGridContainer', state.movieReducer);
+	  return { movies: state.movieReducer };
 	};
 	
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	  return {
-	    handleFavorite: function handleFavorite(text, id) {
-	      dispatch(addTodo(text, id));
-	    }
-	  };
-	};
+	// const mapDispatchToProps=(dispatch) => {
+	//   return {
+	//     handleFavorite: (text, id) => {
+	//       dispatch(addTodo(text, id))
+	//     }
+	//   }
+	// }
 	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_movieGrid2.default);
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, null)(_MovieGrid2.default);
 
 /***/ }),
 /* 185 */
@@ -24328,6 +24328,8 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _MovieCard = __webpack_require__(226);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24336,33 +24338,125 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var MovieIndex = function (_Component) {
-	  _inherits(MovieIndex, _Component);
+	var MovieGrid = function (_Component) {
+	  _inherits(MovieGrid, _Component);
 	
-	  function MovieIndex(props) {
-	    _classCallCheck(this, MovieIndex);
+	  function MovieGrid(props) {
+	    _classCallCheck(this, MovieGrid);
 	
-	    return _possibleConstructorReturn(this, (MovieIndex.__proto__ || Object.getPrototypeOf(MovieIndex)).call(this, props));
+	    return _possibleConstructorReturn(this, (MovieGrid.__proto__ || Object.getPrototypeOf(MovieGrid)).call(this, props));
 	  }
 	
-	  _createClass(MovieIndex, [{
+	  _createClass(MovieGrid, [{
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+	
+	      var movies = this.props.movies;
+	      // console.log(this.props.movies)
+	      // if (!this.props.movies) {
+	      //   return (
+	      //    <h4>Guess there's nothing worth seeing....</h4>
+	      //   )
+	      // }
+	
+	      console.log(this.props.movies);
 	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        'MOVIES'
+	        'section',
+	        { id: 'movie-grid' },
+	        Object.keys(this.props.movies).map(function (key, movie) {
+	          console.log('card data', _this2.props.movies[movie]);
+	          return _react2.default.createElement(_MovieCard.MovieCard, { title: _this2.props.movies[movie].title,
+	            poster: _this2.props.movies[movie].poster,
+	            overview: _this2.props.movies[movie].overview,
+	            releaseDate: _this2.props.movies[movie].releaseDate,
+	            voteCount: _this2.props.movies[movie].voteCount,
+	            votingAverage: _this2.props.movies[movie].votingAverage });
+	        })
 	      );
 	    }
 	  }]);
 	
-	  return MovieIndex;
+	  return MovieGrid;
 	}(_react.Component);
 	
-	exports.default = MovieIndex;
+	exports.default = MovieGrid;
 
 /***/ }),
 /* 226 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.MovieCard = undefined;
+	
+	var _react = __webpack_require__(2);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _propTypes = __webpack_require__(187);
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var MovieCard = exports.MovieCard = function MovieCard(_ref) {
+	  var title = _ref.title,
+	      poster = _ref.poster,
+	      overview = _ref.overview,
+	      releaseDate = _ref.releaseDate,
+	      voteCount = _ref.voteCount,
+	      votingAverage = _ref.votingAverage;
+	
+	  console.log(title);
+	  return _react2.default.createElement(
+	    'article',
+	    null,
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      title
+	    ),
+	    _react2.default.createElement('img', { className: 'movie-poster',
+	      alt: title,
+	      src: poster }),
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      overview
+	    ),
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      releaseDate
+	    ),
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      voteCount
+	    ),
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      votingAverage
+	    )
+	  );
+	};
+	
+	MovieCard.propTypes = {
+	  title: _propTypes2.default.string.isRequired,
+	  poster: _propTypes2.default.string.isRequired,
+	  overview: _propTypes2.default.string.isRequired,
+	  releaseDate: _propTypes2.default.string.isRequired,
+	  voteCount: _propTypes2.default.number.isRequired,
+	  votingAverage: _propTypes2.default.string.isRequired
+	};
+
+/***/ }),
+/* 227 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -24390,7 +24484,7 @@
 	exports['default'] = thunk;
 
 /***/ }),
-/* 227 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24400,9 +24494,13 @@
 	});
 	exports.retrieveMovies = exports.getMovies = undefined;
 	
-	var _apiCall = __webpack_require__(228);
+	var _apiCall = __webpack_require__(229);
 	
 	var _apiCall2 = _interopRequireDefault(_apiCall);
+	
+	var _cleaner = __webpack_require__(231);
+	
+	var _cleaner2 = _interopRequireDefault(_cleaner);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -24417,7 +24515,6 @@
 	};
 	
 	var retrieveMovies = exports.retrieveMovies = function retrieveMovies(movies) {
-	  console.log(movies);
 	  return {
 	    type: 'RETRIEVED_MOVIES',
 	    movies: movies
@@ -24425,7 +24522,7 @@
 	};
 
 /***/ }),
-/* 228 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24433,10 +24530,11 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.cleaner = undefined;
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _key = __webpack_require__(229);
+	var _key = __webpack_require__(230);
 	
 	var _key2 = _interopRequireDefault(_key);
 	
@@ -24444,29 +24542,47 @@
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	var APICall = function () {
-	  function APICall() {
-	    _classCallCheck(this, APICall);
+	var cleaner = exports.cleaner = function cleaner(data) {
+	  return data.results.reduce(function (acc, movie) {
+	    if (!acc[movie.title]) {
+	      acc[movie.title] = {
+	        title: movie.title,
+	        poster: 'https://image.tmdb.org/t/p/w500' + movie.poster_path,
+	        overview: movie.overview,
+	        votingAverage: movie.voting_average,
+	        voteCount: movie.vote_count,
+	        releaseData: movie.release_date
+	      };
+	    }
+	    return acc;
+	  }, {});
+	};
+	
+	var apiCall = function () {
+	  function apiCall() {
+	    _classCallCheck(this, apiCall);
 	  }
 	
-	  _createClass(APICall, null, [{
+	  _createClass(apiCall, null, [{
 	    key: 'fetchMovies',
 	    value: function fetchMovies() {
 	      return fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=' + _key2.default).then(function (resp) {
 	        return resp.json();
+	      }).then(function (json) {
+	        return cleaner(json);
 	      }).catch(function () {
 	        return console.log('fetch error');
 	      });
 	    }
 	  }]);
 	
-	  return APICall;
+	  return apiCall;
 	}();
 	
-	exports.default = APICall;
+	exports.default = apiCall;
 
 /***/ }),
-/* 229 */
+/* 230 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -24477,7 +24593,32 @@
 	exports.default = 'de2f6f839f875c177539f24f874dc62e';
 
 /***/ }),
-/* 230 */
+/* 231 */
+/***/ (function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var cleaner = exports.cleaner = function cleaner(data) {
+	  return data.results.reduce(function (acc, movie) {
+	    if (!acc[movie.title]) {
+	      acc[movie.title] = {
+	        title: movie.title,
+	        poster: "https://image.tmdb.org/t/p/w500" + movie.poster_path,
+	        overview: movie.overview,
+	        votingAverage: movie.voting_average,
+	        voteCount: movie.vote_count,
+	        releaseDate: movie.release_date
+	      };
+	    }
+	    return acc;
+	  }, {});
+	};
+
+/***/ }),
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24488,11 +24629,11 @@
 	
 	var _redux = __webpack_require__(198);
 	
-	var _favoritesReducer = __webpack_require__(231);
+	var _favoritesReducer = __webpack_require__(233);
 	
 	var _favoritesReducer2 = _interopRequireDefault(_favoritesReducer);
 	
-	var _moviesReducer = __webpack_require__(232);
+	var _moviesReducer = __webpack_require__(234);
 	
 	var _moviesReducer2 = _interopRequireDefault(_moviesReducer);
 	
@@ -24506,7 +24647,7 @@
 	exports.default = rootReducer;
 
 /***/ }),
-/* 231 */
+/* 233 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -24532,8 +24673,8 @@
 	exports.default = favorites;
 
 /***/ }),
-/* 232 */
-/***/ (function(module, exports) {
+/* 234 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
@@ -24541,21 +24682,26 @@
 	  value: true
 	});
 	
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+	var _cleaner = __webpack_require__(231);
 	
-	var movies = function movies() {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+	var _cleaner2 = _interopRequireDefault(_cleaner);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var movieReducer = function movieReducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 	  var action = arguments[1];
 	
+	  console.log('movieReducer', action.movies);
 	  switch (action.type) {
 	    case 'RETRIEVED_MOVIES':
-	      return [].concat(_toConsumableArray(state), _toConsumableArray(action.movies.results));
+	      return Object.assign({}, state, action.movies);
 	    default:
 	      return state;
 	  }
 	};
 	
-	exports.default = movies;
+	exports.default = movieReducer;
 
 /***/ })
 /******/ ]);
