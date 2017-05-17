@@ -1,7 +1,8 @@
 import { connect } from 'react-redux'
-import movieIndex from './movieIndex'
+import MovieGrid from './movieGrid'
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return { movies: state.movies }
 }
 
@@ -13,4 +14,4 @@ const mapDispatchToProps=(dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(movieIndex)
+export default connect(mapStateToProps, mapDispatchToProps)(MovieGrid)
