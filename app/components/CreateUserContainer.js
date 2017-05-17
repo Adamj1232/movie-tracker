@@ -1,9 +1,9 @@
 import { connect } from 'react-redux'
-import LoginPage from './LoginPage'
+import CreateUser from './CreateUser'
 
 const mapStateToProps = (state) => {
   console.log('movieGridContainer', state.movieReducer)
-  return { user: state.nameReducer }
+  return { movies: state.movieReducer }
 }
 
 // const mapDispatchToProps=(dispatch) => {
@@ -14,4 +14,4 @@ const mapStateToProps = (state) => {
 //   }
 // }
 
-export default connect(mapStateToProps, null)(LoginPage)
+export default connect(mapStateToProps, null)(CreateUser)

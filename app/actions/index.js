@@ -8,12 +8,21 @@ export const retrieveMovies = (movies) => {
   }
 }
 
+export const createUser = (user) => {
+  return {
+    type: 'CREATE_USER',
+    user
+  }
+}
+
 export const login = (user) => {
   return {
     type: 'LOGIN',
     user
   }
 }
+
+
 
 export const logout = () => {
   return {
