@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/app-container';
-import AppContainer from './components/app-container'
+import App from './components/app';
 
 // import './index.css';
 // import React from 'react';
@@ -21,7 +20,7 @@ const store = createStore(rootReducer, devTools, applyMiddleware(thunk));
 store.dispatch(getMovies())
 ReactDOM.render(
   <Provider store={store} >
-    <AppContainer />
+    <App />
   </Provider>,
   document.getElementById('main')
 )

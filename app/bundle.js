@@ -69,13 +69,13 @@
 	
 	var _redux = __webpack_require__(197);
 	
-	var _reduxThunk = __webpack_require__(228);
+	var _reduxThunk = __webpack_require__(227);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
-	var _index = __webpack_require__(227);
+	var _index = __webpack_require__(228);
 	
-	var _index2 = __webpack_require__(229);
+	var _index2 = __webpack_require__(231);
 	
 	var _index3 = _interopRequireDefault(_index2);
 	
@@ -89,7 +89,7 @@
 	
 	var store = (0, _redux.createStore)(_index3.default, devTools, (0, _redux.applyMiddleware)(_reduxThunk2.default));
 	
-	store.dispatch((0, _index.fetchAllMovies)());
+	store.dispatch((0, _index.getMovies)());
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRedux.Provider,
 	  { store: store },
@@ -24278,8 +24278,6 @@
 	
 	var _movieIndexContainer2 = _interopRequireDefault(_movieIndexContainer);
 	
-	var _index = __webpack_require__(227);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24298,12 +24296,6 @@
 	  }
 	
 	  _createClass(App, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      console.log('did mount??');
-	      (0, _index.fetchAllMovies)();
-	    }
-	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -24410,35 +24402,6 @@
 
 	'use strict';
 	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var fetchAllMovies = exports.fetchAllMovies = function fetchAllMovies() {
-	  var movieApi = 'https://api.themoviedb.org/3/movie/now_playing?api_key=de2f6f839f875c177539f24f874dc62e';
-	
-	  return fetch(movieApi).then(function (resp) {
-	    return resp.json();
-	  }).then(function (movies) {
-	    return dispatch(retrieveMovies(movies));
-	  }).catch(function () {
-	    console.log('fetch error');
-	  });
-	};
-	
-	var retrieveMovies = exports.retrieveMovies = function retrieveMovies(movies) {
-	  console.log(movies);
-	  return {
-	    type: 'RETRIEVED_MOVIES',
-	    movies: movies
-	  };
-	};
-
-/***/ }),
-/* 228 */
-/***/ (function(module, exports) {
-
-	'use strict';
-	
 	exports.__esModule = true;
 	function createThunkMiddleware(extraArgument) {
 	  return function (_ref) {
@@ -24462,7 +24425,94 @@
 	exports['default'] = thunk;
 
 /***/ }),
+/* 228 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.retrieveMovies = exports.getMovies = undefined;
+	
+	var _apiCall = __webpack_require__(229);
+	
+	var _apiCall2 = _interopRequireDefault(_apiCall);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var getMovies = exports.getMovies = function getMovies() {
+	  return function (dispatch) {
+	    return _apiCall2.default.fetchMovies().then(function (movies) {
+	      return dispatch(retrieveMovies(movies));
+	    }).catch(function () {
+	      return console.log('fetch2 error');
+	    });
+	  };
+	};
+	
+	var retrieveMovies = exports.retrieveMovies = function retrieveMovies(movies) {
+	  console.log(movies);
+	  return {
+	    type: 'RETRIEVED_MOVIES',
+	    movies: movies
+	  };
+	};
+
+/***/ }),
 /* 229 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _key = __webpack_require__(230);
+	
+	var _key2 = _interopRequireDefault(_key);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var APICall = function () {
+	  function APICall() {
+	    _classCallCheck(this, APICall);
+	  }
+	
+	  _createClass(APICall, null, [{
+	    key: 'fetchMovies',
+	    value: function fetchMovies() {
+	      return fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=' + _key2.default).then(function (resp) {
+	        return resp.json();
+	      }).catch(function () {
+	        return console.log('fetch error');
+	      });
+	    }
+	  }]);
+	
+	  return APICall;
+	}();
+	
+	exports.default = APICall;
+
+/***/ }),
+/* 230 */
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = 'de2f6f839f875c177539f24f874dc62e';
+
+/***/ }),
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24473,11 +24523,11 @@
 	
 	var _redux = __webpack_require__(197);
 	
-	var _favoritesReducer = __webpack_require__(230);
+	var _favoritesReducer = __webpack_require__(232);
 	
 	var _favoritesReducer2 = _interopRequireDefault(_favoritesReducer);
 	
-	var _moviesReducer = __webpack_require__(231);
+	var _moviesReducer = __webpack_require__(233);
 	
 	var _moviesReducer2 = _interopRequireDefault(_moviesReducer);
 	
@@ -24491,7 +24541,7 @@
 	exports.default = rootReducer;
 
 /***/ }),
-/* 230 */
+/* 232 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -24517,7 +24567,7 @@
 	exports.default = favorites;
 
 /***/ }),
-/* 231 */
+/* 233 */
 /***/ (function(module, exports) {
 
 	'use strict';
