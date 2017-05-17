@@ -7,9 +7,9 @@ export const cleaner = (data) => {
         title: movie.title,
         poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
         overview: movie.overview,
-        votingAverage: movie.voting_average,
+        votingAverage: movie.vote_average,
         voteCount: movie.vote_count,
-        releaseData: movie.release_date
+        releaseDate: movie.release_date
       }
     }
     return acc

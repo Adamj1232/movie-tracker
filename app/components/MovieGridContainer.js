@@ -6,12 +6,12 @@ const mapStateToProps = (state) => {
   return { movies: state.movieReducer }
 }
 
-const mapDispatchToProps=(dispatch) => {
-  return {
-    handleFavorite: (text, id) => {
-      dispatch(addTodo(text, id))
-    }
-  }
-}
+// const mapDispatchToProps=(dispatch) => {
+//   return {
+//     handleFavorite: (text, id) => {
+//       dispatch(addTodo(text, id))
+//     }
+//   }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieGrid)
+export default connect(mapStateToProps, null)(MovieGrid)

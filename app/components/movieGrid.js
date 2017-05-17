@@ -9,16 +9,14 @@ export default class MovieGrid extends Component {
 
   render() {
     const { movies } = this.props;
-    console.log(this.props.movies)
     if (!this.props.movies) {
       return (
        <h4>Guess there's nothing worth seeing....</h4>
       )
     }
-
     return (
       <section id="movie-grid">
-        { Object.keys(this.props.movies).map((key, movie) => {
+        { Object.keys(this.props.movies).map((movie, index) => {
           return (
             <MovieCard title={this.props.movies[movie].title}
                        poster={this.props.movies[movie].poster}
