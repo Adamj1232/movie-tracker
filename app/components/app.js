@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
+import MovieIndexContainer from './movieIndexContainer'
 
 export default class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
+
 
   render() {
     return (
       <div>
-        <h1>Bres Movie Watcher</h1>
-
+        <h1>Jacks Movie Watcher</h1>
       </div>
     )
   }
