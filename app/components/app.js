@@ -6,12 +6,15 @@ import LoginPageContainer from './LoginPageContainer'
 import { Route, Link, Switch } from 'react-router-dom';
 
 
+
 export default class App extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
   }
 
+
   render() {
+    console.log(this.props.history)
     return (
       <section>
         <NavBar/>

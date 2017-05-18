@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 export default class LoginPage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state={
       email: '',
       password: ''
@@ -29,6 +29,9 @@ export default class LoginPage extends Component {
     this.setState({ email: '',
                     password: ''
                   })
+
+
+    console.log(this.state.history)
   }
 
   render() {
