@@ -6,18 +6,18 @@ import PropTypes from 'prop-types';
 export const MovieCard = ({ title, poster, overview, releaseDate, voteCount, votingAverage }) => {
   return (
     <article className="movie-card">
-      <p>{title}</p>
       <button>Favorite</button>
       <img className="movie-poster"
            alt={title}
            src={poster} />
-      <p>{overview}</p>
-      <p>Release Date: {releaseDate}</p>
-      <p>Vote Count: {voteCount}</p>
-      <p>Vote Average: {votingAverage}</p>
     </article>
   )
 }
+// <p>{title}</p>
+// <p>{overview}</p>
+// <p>Release Date: {releaseDate}</p>
+// <p>Vote Count: {voteCount}</p>
+// <p>Vote Average: {votingAverage}</p>
 
 MovieCard.propTypes = {
   title: PropTypes.string.isRequired,

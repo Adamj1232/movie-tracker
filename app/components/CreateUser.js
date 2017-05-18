@@ -42,7 +42,7 @@ export default class CreateUser extends Component {
                placeholder='please enter email'
                onChange={(e) => {
                  this.setState({ email: e.target.value.toLowerCase() })}} />
-        <input type='text'
+        <input type='password'
                placeholder='please enter password'
                onChange={(e) => {
                  this.setState({ password: e.target.value })}} />
