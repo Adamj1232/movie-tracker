@@ -23,11 +23,9 @@ export default class CreateUser extends Component {
     .then((json) => console.log(json))
     .catch((error) => console.log(error))
     this.props.handleSubmit(this.state)
-    this.setState({
-                    name: '',
-                    email: '',
-                    password: ''
-                  })
+    document.getElementById('name').value = ''
+    document.getElementById('email').value = ''
+    document.getElementById('password').value = ''
   }
 
 
