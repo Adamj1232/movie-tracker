@@ -19,12 +19,12 @@ validateUser(databaseUsers){
     e.preventDefault()
     const { email, password } = this.state
     fetch('/api/users',{
-      method: 'GET',
+      method: 'POST',
       headers: {'Content-Type':'application/json'},
-      body:({name, email, password})
+      body:JSON.stringify({ email, password})
     })
     .then((resp)=> resp.json())
-    .then((user)=>this.validateUser(user))
+    .then((user)=>console.log(user))
     document.getElementById('email').value = ''
     document.getElementById('password').value = ''
   }
