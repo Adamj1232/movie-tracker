@@ -8,17 +8,17 @@ export const retrieveMovies = (movies) => {
   }
 }
 
-export const createUser = (user) => {
+export const createUser = (users) => {
   return {
     type: 'CREATE_USER',
-    user
+    users
   }
 }
 
-export const login = (user) => {
+export const login = (users) => {
   return {
     type: 'LOGIN',
-    user
+    users
   }
 }
 

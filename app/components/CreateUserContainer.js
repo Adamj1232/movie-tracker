@@ -1,17 +1,17 @@
 import { connect } from 'react-redux'
 import CreateUser from './CreateUser'
+import { createUser } from '../actions/index'
 
 const mapStateToProps = (state) => {
-  console.log('movieGridContainer', state.movieReducer)
-  return { movies: state.movieReducer }
+  return { user: state.createUserReducer }
 }
 
-// const mapDispatchToProps=(dispatch) => {
-//   return {
-//     handleFavorite: (text, id) => {
-//       dispatch(addTodo(text, id))
-//     }
-//   }
-// }
+const mapDispatchToProps=(dispatch) => {
+  return {
+    handleSubmit: (user) => {
+      dispatch(createUser(user))
+    }
+  }
+}
 
-export default connect(mapStateToProps, null)(CreateUser)
+export default connect(mapStateToProps, mapDispatchToProps)(CreateUser)
