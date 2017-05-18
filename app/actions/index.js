@@ -1,5 +1,5 @@
 import apiCall from '../helper/apiCall';
-import cleaner from '../helper/cleaner';
+// import cleaner from '../helper/cleaner';
 
 export const retrieveMovies = (movies) => {
   return {
@@ -21,8 +21,6 @@ export const login = (users) => {
     users
   }
 }
-
-
 
 export const logout = () => {
   return {

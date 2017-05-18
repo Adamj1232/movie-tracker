@@ -1,17 +1,16 @@
-import { connect } from 'react-redux'
-import LoginPage from './LoginPage'
+import React from 'react';
+import { connect } from 'react-redux';
+import LoginPage from './LoginPage';
+import { login } from '../actions'
 
 const mapStateToProps = (state) => {
-  console.log('movieGridContainer', state.movieReducer)
-  return { user: state.nameReducer }
+  return { activeUser: state.userReducer }
 }
 
-// const mapDispatchToProps=(dispatch) => {
-//   return {
-//     handleFavorite: (text, id) => {
-//       dispatch(addTodo(text, id))
-//     }
-//   }
-// }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleLogin: (activeUser) => dispatch(login(activeUser))
+  }
+}
 
-export default connect(mapStateToProps, null)(LoginPage)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 export default class CreateUser extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
       name: '',
       email: '',
@@ -13,19 +13,25 @@ export default class CreateUser extends Component {
   addNewUser(e) {
     e.preventDefault()
     const { name, email, password } = this.state;
+    const { handleSubmit } = this.props
 
     fetch('/api/users/new', {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({name, email, password})
     })
-    .then((res) => res.json())
-    .then((json) => console.log(json))
-    .catch((error) => console.log(error))
-    this.props.handleSubmit(this.state)
-    document.getElementById('name').value = ''
-    document.getElementById('email').value = ''
-    document.getElementById('password').value = ''
+    .then((resp) => {
+      resp.status !== 200 ?
+        alert('User already exists, please login') :
+        handleSubmit(this.state)
+    })
+    .then(() => this.setState({ name: '',
+                                email: '',
+                                password: ''
+                              }))
+    .catch((error) => {
+      console.log(error, 'user already exists')
+    })
   }
 
 
@@ -33,14 +39,17 @@ export default class CreateUser extends Component {
     return (
       <form className = 'create-user-controls'>
         <input type='text'
+               value={this.state.name}
                placeholder='please enter name'
                onChange={(e) => {
                  this.setState({ name: e.target.value })}} />
         <input type='text'
+               value={this.state.email}
                placeholder='please enter email'
                onChange={(e) => {
                  this.setState({ email: e.target.value.toLowerCase() })}} />
         <input type='password'
+               value={this.state.password}
                placeholder='please enter password'
                onChange={(e) => {
                  this.setState({ password: e.target.value })}} />

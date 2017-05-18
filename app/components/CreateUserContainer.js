@@ -3,13 +3,13 @@ import CreateUser from './CreateUser'
 import { createUser } from '../actions/index'
 
 const mapStateToProps = (state) => {
-  return { user: state.createUserReducer }
+  return { newUser: state.userReducer }
 }
 
 const mapDispatchToProps=(dispatch) => {
   return {
-    handleSubmit: (user) => {
-      dispatch(createUser(user))
+    handleSubmit: (newUser) => {
+      dispatch(createUser(newUser))
     }
   }
 }
