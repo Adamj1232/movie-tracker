@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 export default class CreateUser extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       name: '',
       email: '',
@@ -11,7 +11,6 @@ export default class CreateUser extends Component {
   }
 
   addNewUser(e) {
-    console.log('add user fired')
     e.preventDefault()
     const { name, email, password } = this.state;
 
@@ -20,10 +19,10 @@ export default class CreateUser extends Component {
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({name, email, password})
     })
-    .catch((error) => {
-      alert('User already exists')
-      console.log(error, 'User already exists')
-    })
+    .then((res) => res.json())
+    .then((json) => console.log(json))
+    .catch((error) => console.log(error))
+    this.props.handleSubmit(this.state)
     this.setState({
                     name: '',
                     email: '',
@@ -37,24 +36,22 @@ export default class CreateUser extends Component {
       <form className = 'create-user-controls'>
         <input type='text'
                placeholder='please enter name'
-               value={this.state.name}
                onChange={(e) => {
                  this.setState({ name: e.target.value })}} />
         <input type='text'
                placeholder='please enter email'
-               value={this.state.email}
                onChange={(e) => {
-                 this.setState({ email: e.target.value })}} />
+                 this.setState({ email: e.target.value.toLowerCase() })}} />
         <input type='text'
                placeholder='please enter password'
-               value={this.state.password}
                onChange={(e) => {
                  this.setState({ password: e.target.value })}} />
         <button className = 'login-submit'
                 onClick={(e) => {
                   this.addNewUser(e)
-                }}
-          >Submit</button>
+                }}>
+        Submit
+        </button>
       </form>
 
     )

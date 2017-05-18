@@ -69,11 +69,11 @@
 	
 	var _redux = __webpack_require__(198);
 	
-	var _reduxThunk = __webpack_require__(232);
+	var _reduxThunk = __webpack_require__(236);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
-	var _index = __webpack_require__(233);
+	var _index = __webpack_require__(230);
 	
 	var _index2 = __webpack_require__(237);
 	
@@ -21882,7 +21882,7 @@
 	
 	var _CreateUserContainer2 = _interopRequireDefault(_CreateUserContainer);
 	
-	var _LoginPageContainer = __webpack_require__(230);
+	var _LoginPageContainer = __webpack_require__(234);
 	
 	var _LoginPageContainer2 = _interopRequireDefault(_LoginPageContainer);
 	
@@ -24534,22 +24534,24 @@
 	
 	var _CreateUser2 = _interopRequireDefault(_CreateUser);
 	
+	var _index = __webpack_require__(230);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var mapStateToProps = function mapStateToProps(state) {
-	  console.log('movieGridContainer', state.movieReducer);
-	  return { movies: state.movieReducer };
+	  console.log('createUSer', state.createUserReducer);
+	  return { user: state.createUserReducer };
 	};
 	
-	// const mapDispatchToProps=(dispatch) => {
-	//   return {
-	//     handleFavorite: (text, id) => {
-	//       dispatch(addTodo(text, id))
-	//     }
-	//   }
-	// }
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    handleSubmit: function handleSubmit(user) {
+	      dispatch((0, _index.createUser)(user));
+	    }
+	  };
+	};
 	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, null)(_CreateUser2.default);
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_CreateUser2.default);
 
 /***/ }),
 /* 229 */
@@ -24578,24 +24580,76 @@
 	var CreateUser = function (_Component) {
 	  _inherits(CreateUser, _Component);
 	
-	  function CreateUser() {
+	  function CreateUser(props) {
 	    _classCallCheck(this, CreateUser);
 	
-	    return _possibleConstructorReturn(this, (CreateUser.__proto__ || Object.getPrototypeOf(CreateUser)).call(this));
+	    var _this = _possibleConstructorReturn(this, (CreateUser.__proto__ || Object.getPrototypeOf(CreateUser)).call(this, props));
+	
+	    _this.state = {
+	      name: '',
+	      email: '',
+	      password: ''
+	    };
+	    return _this;
 	  }
 	
 	  _createClass(CreateUser, [{
+	    key: 'addNewUser',
+	    value: function addNewUser(e) {
+	      console.log('add user fired');
+	      e.preventDefault();
+	      var _state = this.state,
+	          name = _state.name,
+	          email = _state.email,
+	          password = _state.password;
+	
+	
+	      fetch('/api/users/new', {
+	        method: 'POST',
+	        headers: { 'Content-Type': 'application/json' },
+	        body: JSON.stringify({ name: name, email: email, password: password })
+	      }).catch(function (error) {
+	        alert('User already exists');
+	        console.log(error, 'User already exists');
+	      });
+	      this.setState({
+	        name: '',
+	        email: '',
+	        password: ''
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+	
 	      return _react2.default.createElement(
-	        'section',
+	        'form',
 	        { className: 'create-user-controls' },
-	        _react2.default.createElement('input', { placeholder: 'please enter name' }),
-	        _react2.default.createElement('input', { placeholder: 'please enter e-mail' }),
-	        _react2.default.createElement('input', { placeholder: 'please enter password' }),
+	        _react2.default.createElement('input', { type: 'text',
+	          placeholder: 'please enter name',
+	          value: this.state.name,
+	          onChange: function onChange(e) {
+	            _this2.setState({ name: e.target.value });
+	          } }),
+	        _react2.default.createElement('input', { type: 'text',
+	          placeholder: 'please enter email',
+	          value: this.state.email,
+	          onChange: function onChange(e) {
+	            _this2.setState({ email: e.target.value });
+	          } }),
+	        _react2.default.createElement('input', { type: 'text',
+	          placeholder: 'please enter password',
+	          value: this.state.password,
+	          onChange: function onChange(e) {
+	            _this2.setState({ password: e.target.value });
+	          } }),
 	        _react2.default.createElement(
 	          'button',
-	          { className: 'login-submit' },
+	          { className: 'login-submit',
+	            onClick: function onClick(e) {
+	              _this2.props.handleSubmit(_this2.state);
+	            } },
 	          'Submit'
 	        )
 	      );
@@ -24616,10 +24670,164 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.getMovies = exports.logout = exports.login = exports.createUser = exports.retrieveMovies = undefined;
+	
+	var _apiCall = __webpack_require__(231);
+	
+	var _apiCall2 = _interopRequireDefault(_apiCall);
+	
+	var _cleaner = __webpack_require__(233);
+	
+	var _cleaner2 = _interopRequireDefault(_cleaner);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var retrieveMovies = exports.retrieveMovies = function retrieveMovies(movies) {
+	  return {
+	    type: 'RETRIEVED_MOVIES',
+	    movies: movies
+	  };
+	};
+	
+	var createUser = exports.createUser = function createUser(user) {
+	  return {
+	    type: 'CREATE_USER',
+	    user: user
+	  };
+	};
+	
+	var login = exports.login = function login(user) {
+	  return {
+	    type: 'LOGIN',
+	    user: user
+	  };
+	};
+	
+	var logout = exports.logout = function logout() {
+	  return {
+	    type: 'LOGOUT'
+	  };
+	};
+	
+	var getMovies = exports.getMovies = function getMovies() {
+	  return function (dispatch) {
+	    return _apiCall2.default.fetchMovies().then(function (movies) {
+	      return dispatch(retrieveMovies(movies));
+	    }).catch(function () {
+	      return console.log('fetch2 error');
+	    });
+	  };
+	};
+
+/***/ }),
+/* 231 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.cleaner = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _key = __webpack_require__(232);
+	
+	var _key2 = _interopRequireDefault(_key);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var cleaner = exports.cleaner = function cleaner(data) {
+	  return data.results.reduce(function (acc, movie) {
+	    if (!acc[movie.title]) {
+	      acc[movie.title] = {
+	        title: movie.title,
+	        poster: 'https://image.tmdb.org/t/p/w500' + movie.poster_path,
+	        overview: movie.overview,
+	        votingAverage: movie.vote_average,
+	        voteCount: movie.vote_count,
+	        releaseDate: movie.release_date
+	      };
+	    }
+	    return acc;
+	  }, {});
+	};
+	
+	var apiCall = function () {
+	  function apiCall() {
+	    _classCallCheck(this, apiCall);
+	  }
+	
+	  _createClass(apiCall, null, [{
+	    key: 'fetchMovies',
+	    value: function fetchMovies() {
+	      return fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=' + _key2.default).then(function (resp) {
+	        return resp.json();
+	      }).then(function (json) {
+	        return cleaner(json);
+	      }).catch(function () {
+	        return console.log('fetch error');
+	      });
+	    }
+	  }]);
+	
+	  return apiCall;
+	}();
+	
+	exports.default = apiCall;
+
+/***/ }),
+/* 232 */
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = 'de2f6f839f875c177539f24f874dc62e';
+
+/***/ }),
+/* 233 */
+/***/ (function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var cleaner = exports.cleaner = function cleaner(data) {
+	  return data.results.reduce(function (acc, movie) {
+	    if (!acc[movie.title]) {
+	      acc[movie.title] = {
+	        title: movie.title,
+	        poster: "https://image.tmdb.org/t/p/w500" + movie.poster_path,
+	        overview: movie.overview,
+	        votingAverage: movie.voting_average,
+	        voteCount: movie.vote_count,
+	        releaseDate: movie.release_date
+	      };
+	    }
+	    return acc;
+	  }, {});
+	};
+
+/***/ }),
+/* 234 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	
 	var _reactRedux = __webpack_require__(185);
 	
-	var _LoginPage = __webpack_require__(231);
+	var _LoginPage = __webpack_require__(235);
 	
 	var _LoginPage2 = _interopRequireDefault(_LoginPage);
 	
@@ -24641,7 +24849,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, null)(_LoginPage2.default);
 
 /***/ }),
-/* 231 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24696,7 +24904,7 @@
 	exports.default = LoginPage;
 
 /***/ }),
-/* 232 */
+/* 236 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -24724,160 +24932,6 @@
 	exports['default'] = thunk;
 
 /***/ }),
-/* 233 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.getMovies = exports.logout = exports.login = exports.createUser = exports.retrieveMovies = undefined;
-	
-	var _apiCall = __webpack_require__(234);
-	
-	var _apiCall2 = _interopRequireDefault(_apiCall);
-	
-	var _cleaner = __webpack_require__(236);
-	
-	var _cleaner2 = _interopRequireDefault(_cleaner);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var retrieveMovies = exports.retrieveMovies = function retrieveMovies(movies) {
-	  return {
-	    type: 'RETRIEVED_MOVIES',
-	    movies: movies
-	  };
-	};
-	
-	var createUser = exports.createUser = function createUser(user) {
-	  return {
-	    type: 'CREATE_USER',
-	    user: user
-	  };
-	};
-	
-	var login = exports.login = function login(user) {
-	  return {
-	    type: 'LOGIN',
-	    user: user
-	  };
-	};
-	
-	var logout = exports.logout = function logout() {
-	  return {
-	    type: 'LOGOUT'
-	  };
-	};
-	
-	var getMovies = exports.getMovies = function getMovies() {
-	  return function (dispatch) {
-	    return _apiCall2.default.fetchMovies().then(function (movies) {
-	      return dispatch(retrieveMovies(movies));
-	    }).catch(function () {
-	      return console.log('fetch2 error');
-	    });
-	  };
-	};
-
-/***/ }),
-/* 234 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.cleaner = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _key = __webpack_require__(235);
-	
-	var _key2 = _interopRequireDefault(_key);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	var cleaner = exports.cleaner = function cleaner(data) {
-	  return data.results.reduce(function (acc, movie) {
-	    if (!acc[movie.title]) {
-	      acc[movie.title] = {
-	        title: movie.title,
-	        poster: 'https://image.tmdb.org/t/p/w500' + movie.poster_path,
-	        overview: movie.overview,
-	        votingAverage: movie.vote_average,
-	        voteCount: movie.vote_count,
-	        releaseDate: movie.release_date
-	      };
-	    }
-	    return acc;
-	  }, {});
-	};
-	
-	var apiCall = function () {
-	  function apiCall() {
-	    _classCallCheck(this, apiCall);
-	  }
-	
-	  _createClass(apiCall, null, [{
-	    key: 'fetchMovies',
-	    value: function fetchMovies() {
-	      return fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=' + _key2.default).then(function (resp) {
-	        return resp.json();
-	      }).then(function (json) {
-	        return cleaner(json);
-	      }).catch(function () {
-	        return console.log('fetch error');
-	      });
-	    }
-	  }]);
-	
-	  return apiCall;
-	}();
-	
-	exports.default = apiCall;
-
-/***/ }),
-/* 235 */
-/***/ (function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = 'de2f6f839f875c177539f24f874dc62e';
-
-/***/ }),
-/* 236 */
-/***/ (function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var cleaner = exports.cleaner = function cleaner(data) {
-	  return data.results.reduce(function (acc, movie) {
-	    if (!acc[movie.title]) {
-	      acc[movie.title] = {
-	        title: movie.title,
-	        poster: "https://image.tmdb.org/t/p/w500" + movie.poster_path,
-	        overview: movie.overview,
-	        votingAverage: movie.voting_average,
-	        voteCount: movie.vote_count,
-	        releaseDate: movie.release_date
-	      };
-	    }
-	    return acc;
-	  }, {});
-	};
-
-/***/ }),
 /* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -24897,16 +24951,16 @@
 	
 	var _moviesReducer2 = _interopRequireDefault(_moviesReducer);
 	
-	var _loginReducer = __webpack_require__(240);
+	var _createUserReducer = __webpack_require__(240);
 	
-	var _loginReducer2 = _interopRequireDefault(_loginReducer);
+	var _createUserReducer2 = _interopRequireDefault(_createUserReducer);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var rootReducer = (0, _redux.combineReducers)({
 	  favoritesReducer: _favoritesReducer2.default,
 	  movieReducer: _moviesReducer2.default,
-	  loginReducer: _loginReducer2.default
+	  createUserReducer: _createUserReducer2.default
 	});
 	
 	exports.default = rootReducer;
@@ -24947,7 +25001,7 @@
 	  value: true
 	});
 	
-	var _cleaner = __webpack_require__(236);
+	var _cleaner = __webpack_require__(233);
 	
 	var _cleaner2 = _interopRequireDefault(_cleaner);
 	
@@ -24977,22 +25031,19 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-	
-	var loginReducer = function loginReducer() {
+	var createUserReducer = function createUserReducer() {
 	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 	  var action = arguments[1];
 	
 	  switch (action.type) {
-	    case 'GET_LOGIN':
-	      return [].concat(_toConsumableArray(action.favorites));
+	    case 'CREATE_USER':
+	      return Object.assign({}, action.user);
 	    default:
 	      return state;
 	  }
 	};
 	
-	exports.default = loginReducer;
+	exports.default = createUserReducer;
 
 /***/ })
 /******/ ]);
