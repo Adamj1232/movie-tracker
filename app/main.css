@@ -25,7 +25,7 @@ body, #main {
   justify-content: flex-end;
 }
 
-.nav-bar button {
+.nav-bar .button {
   margin: 10px 15px;
   padding: 2px 10px;
   color: white;

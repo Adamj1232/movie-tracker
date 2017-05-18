@@ -6,6 +6,7 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { getMovies } from './actions/index'
+import { BrowserRouter as Router, browserHistory } from 'react-router-dom';
 
 import rootReducer from './reducers/index'
 
@@ -16,7 +17,9 @@ const store = createStore(rootReducer, devTools, applyMiddleware(thunk));
 store.dispatch(getMovies())
 ReactDOM.render(
   <Provider store={store} >
-    <App />
+    <Router history={browserHistory}>
+      <App />
+    </Router>
   </Provider>,
   document.getElementById('main')
 )
