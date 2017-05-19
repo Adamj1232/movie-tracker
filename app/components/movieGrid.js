@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { MovieCard } from './MovieCard';
 
+
 export default class MovieGrid extends Component {
   constructor(props) {
     super(props);
@@ -8,7 +9,7 @@ export default class MovieGrid extends Component {
 
 
   render() {
-    const { movies } = this.props;
+    const { movies, userData } = this.props;
     if (!this.props.movies) {
       return (
        <h4>Guess theres nothing worth seeing....</h4>
@@ -19,11 +20,12 @@ export default class MovieGrid extends Component {
         { Object.keys(this.props.movies).map((movie, index) => {
           return (
             <MovieCard title={this.props.movies[movie].title}
-                       poster={this.props.movies[movie].poster}
+                       poster_path={this.props.movies[movie].poster_path}
                        overview={this.props.movies[movie].overview}
-                       releaseDate={this.props.movies[movie].releaseDate}
-                       voteCount={this.props.movies[movie].voteCount}
-                       votingAverage={this.props.movies[movie].votingAverage}
+                       release_date={this.props.movies[movie].release_date}
+                       vote_average={this.props.movies[movie].vote_average}
+                       user_id={this.props.userData.id}
+                       movie_id={this.props.movies[movie].id}
                        key={index}/>
           )
         }) }

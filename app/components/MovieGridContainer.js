@@ -1,17 +1,12 @@
 import { connect } from 'react-redux'
 import MovieGrid from './MovieGrid'
+import { addFavorites } from '../actions/index.js'
 
 const mapStateToProps = (state) => {
   console.log('movieGridContainer', state.movieReducer)
-  return { movies: state.movieReducer }
+  return { movies: state.movieReducer, userData: state.userReducer }
 }
 
-// const mapDispatchToProps=(dispatch) => {
-//   return {
-//     handleFavorite: (text, id) => {
-//       dispatch(addTodo(text, id))
-//     }
-//   }
-// }
+
 
 export default connect(mapStateToProps, null)(MovieGrid)
