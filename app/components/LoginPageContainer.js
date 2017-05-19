@@ -9,7 +9,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleLogin: (activeUser) => dispatch(login(activeUser))
+    handleLogin: (activeUser) => dispatch(login(activeUser)),
   }
 }
 
