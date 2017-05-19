@@ -5,7 +5,7 @@ const userReducer = (state={}, action) => {
     case 'LOGIN':
       return Object.assign({}, state, action.users)
     case 'LOGOUT':
-      return state
+      return {}
     default:
       return state
   }

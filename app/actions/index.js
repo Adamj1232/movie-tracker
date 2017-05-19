@@ -22,9 +22,10 @@ export const login = (users) => {
   }
 }
 
-export const logout = () => {
+export const logout = (users) => {
   return {
-    type: 'LOGOUT'
+    type: 'LOGOUT',
+    users
   }
 }
 
