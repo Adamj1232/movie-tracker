@@ -37,3 +37,11 @@ export const getMovies = () => {
     )
   }
 }
+
+export const addFavorites = ()=>{
+
+}
+
+export const removeFavorites = ()=>{
+
+}

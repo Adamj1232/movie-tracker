@@ -42,3 +42,33 @@ body, #main {
 .nav-bar .tracker {
   color: #eadf3f;
 }
+
+
+input {
+  display: inherit;
+  margin: 3%;
+  height: 30px;
+  width: 65%;
+  background-color: transparent;
+  color: white;
+}
+
+button {
+  display: inherit;
+  text-align: center;
+  height: 27px;
+  width: 57px;
+  background-color: transparent;
+  color: white;
+  justify-content: center;
+  margin: 10px 0 -12px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15%;
+  margin:6%;
+  background-color: rgba(0, 0, 0, 0.65);
+}
