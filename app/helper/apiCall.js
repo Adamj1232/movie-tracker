@@ -2,19 +2,21 @@ import APIKey from '../key'
 
 export const cleaner = (data) => {
   return data.results.reduce((acc, movie) => {
+    console.log(movie)
     if (!acc[movie.title]) {
       acc[movie.title] = {
         title: movie.title,
-        poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+        poster_path: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
         overview: movie.overview,
-        votingAverage: movie.vote_average,
-        voteCount: movie.vote_count,
-        releaseDate: movie.release_date
+        vote_average: movie.vote_average,
+        release_date: movie.release_date,
+        movie_id: movie.id
       }
     }
     return acc
   }, {})
 }
+
 
 export default class apiCall {
   static fetchMovies () {

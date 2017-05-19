@@ -1,5 +1,3 @@
-import cleaner from '../helper/cleaner'
-
 const movieReducer = (state={}, action) => {
   console.log('movieReducer', action.movies);
   switch (action.type){
