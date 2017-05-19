@@ -12,7 +12,6 @@ export default class LoginPage extends Component {
   userLogin(e){
     e.preventDefault()
     const { email, password } = this.state
-    const { handleLogin } = this.props;
 
     fetch('/api/users',{
       method: 'POST',
@@ -20,7 +19,7 @@ export default class LoginPage extends Component {
       body:JSON.stringify({ email, password})
     })
     .then((resp)=> resp.json())
-    .then((user) => handleLogin(user.data))
+    .then((user) => this.changeHistory(user.data))
 
     .catch((error) => {
       alert('Cannot find user, please check email and password')
@@ -29,6 +28,26 @@ export default class LoginPage extends Component {
     this.setState({ email: '',
                     password: ''
                   })
+  }
+
+  changeHistory(userInfo){
+    const { handleLogin, history } = this.props;
+    if(userInfo) {
+      handleLogin(userInfo)
+      this.props.history.replace('/')
+    } else {
+      alert('Cannot find user, please check email and password')
+    }
+  }
+
+  verifyInputFields(e){
+    e.preventDefault()
+    const { name, email, password } = this.state;
+    if(email === '' || password === ''){
+        return alert('Please enter your user name and password')
+    } else {
+      this.userLogin(e)
+    }
   }
 
   render() {
@@ -49,7 +68,7 @@ export default class LoginPage extends Component {
                 this.setState({password:e.target.value})
         }}/>
         <button className = 'login-submit'
-                onClick={(e)=>{this.userLogin(e)}}>
+                onClick={(e)=>{this.verifyInputFields(e)}}>
           Login
         </button>
       </form>
