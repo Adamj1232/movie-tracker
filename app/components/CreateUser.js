@@ -11,9 +11,7 @@ export default class CreateUser extends Component {
   }
 
   addNewUser(e) {
-    e.preventDefault()
     const { name, email, password } = this.state;
-
     fetch('/api/users/new', {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
@@ -24,21 +22,26 @@ export default class CreateUser extends Component {
         alert('User already exists, please login') :
         this.changeRoute()
     })
-    // .then(() => this.setState({ name: '',
-    //                             email: '',
-    //                             password: ''
-    //                           }))
 
     .catch((error) => {
       console.log(error, 'user already exists')
     })
   }
 
+  verifyInputFields(e){
+    e.preventDefault()
+    const { name, email, password } = this.state;
+    if(name === '' || email === '' || password === ''){
+        return alert('Please fill out all fields')
+    } else {
+      this.addNewUser(e)
+    }
+  }
+
   changeRoute(){
     const { handleSubmit, history } = this.props
     this.props.history.replace('/')
     handleSubmit(this.state)
-
   }
 
   render() {
@@ -61,7 +64,7 @@ export default class CreateUser extends Component {
                  this.setState({ password: e.target.value })}} />
         <button className = 'login-submit'
                 onClick={(e) => {
-                  this.addNewUser(e)
+                  this.verifyInputFields(e)
                 }}>
         Submit
         </button>

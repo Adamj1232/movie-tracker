@@ -40,6 +40,16 @@ export default class LoginPage extends Component {
     }
   }
 
+  verifyInputFields(e){
+    e.preventDefault()
+    const { name, email, password } = this.state;
+    if(email === '' || password === ''){
+        return alert('Please enter your user name and password')
+    } else {
+      this.userLogin(e)
+    }
+  }
+
   render() {
     return (
       <form>
@@ -58,7 +68,7 @@ export default class LoginPage extends Component {
                 this.setState({password:e.target.value})
         }}/>
         <button className = 'login-submit'
-                onClick={(e)=>{this.userLogin(e)}}>
+                onClick={(e)=>{this.verifyInputFields(e)}}>
           Login
         </button>
       </form>
