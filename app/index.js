@@ -9,7 +9,7 @@ import { getMovies } from './actions/index'
 import { BrowserRouter as Router, browserHistory } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import rootReducer from './reducers/index'
-
+import createHistory from 'history/createBrowserHistory';
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 
