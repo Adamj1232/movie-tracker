@@ -25,7 +25,7 @@ export default class MovieGrid extends Component {
                        release_date={this.props.movies[movie].release_date}
                        vote_average={this.props.movies[movie].vote_average}
                        user_id={this.props.userData.id}
-                       movie_id={this.props.movies[movie].id}
+                       movie_id={this.props.movies[movie].movie_id}
                        key={index}/>
           )
         }) }

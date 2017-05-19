@@ -26,12 +26,6 @@ export const MovieCard = ({ title, poster_path, overview, release_date, vote_ave
 }
 
 
-// <p>{title}</p>
-// <p>{overview}</p>
-// <p>Release Date: {releaseDate}</p>
-// <p>Vote Count: {voteCount}</p>
-// <p>Vote Average: {votingAverage}</p>
-
 MovieCard.propTypes = {
   title: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,

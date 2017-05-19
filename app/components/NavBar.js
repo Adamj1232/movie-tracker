@@ -11,7 +11,6 @@ export const NavBar = (props) => {
 }
 
 const userStatus = (user, handleLogout) => {
-  console.log(user.name)
   const userKey = Object.keys(user)
 
   if (!userKey.length) {
@@ -30,7 +29,7 @@ const userStatus = (user, handleLogout) => {
       <div className="nav-bar">
       <h1> Movie</h1><h1 className='tracker'>Tracker</h1>
       <NavLink to='/' activeClassName='nav-button' className='button'>Home</NavLink>
-      <NavLink to='/Favorites' activeClassName='nav-button' className='button'>Favorites</NavLink>
+      <NavLink to='/Favorites' activeClassName='nav-button' className='button' onClick={ () => { handleFavorites() }}>Favorites</NavLink>
       <NavLink to='/'
                activeClassName='nav-button'
                className='button'

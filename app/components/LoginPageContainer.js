@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import LoginPage from './LoginPage';
-import { login } from '../actions'
+import { login, showFavorites } from '../actions'
 
 const mapStateToProps = (state) => {
   return { activeUser: state.userReducer }
@@ -10,6 +10,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     handleLogin: (activeUser) => dispatch(login(activeUser)),
+    handleFavorites: (movies) => dispatch(showFavorites(movies))
   }
 }
 

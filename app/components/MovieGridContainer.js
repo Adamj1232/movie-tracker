@@ -3,7 +3,6 @@ import MovieGrid from './MovieGrid'
 import { addFavorites } from '../actions/index.js'
 
 const mapStateToProps = (state) => {
-  console.log('movieGridContainer', state.movieReducer)
   return { movies: state.movieReducer, userData: state.userReducer }
 }
 
