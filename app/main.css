@@ -43,6 +43,13 @@ body, #main {
   color: #eadf3f;
 }
 
+.nav {
+  width: 100%;
+}
+
+.user-name {
+  margin-bottom: 2px;
+}
 
 input {
   display: inherit;
