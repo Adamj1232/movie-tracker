@@ -1,13 +1,25 @@
 import React, { Component } from 'react';
+// import { allFavorites } from './actions/index'
 
 export default class LoginPage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state={
       email: '',
       password: ''
     }
   }
+
+
+getFavorites(userId){
+  const { handleFavorites } = this.props;
+  console.log(userId)
+    fetch (`api/users/${userId}/favorites`)
+  .then((resp) => resp.json())
+  .then((json) =>  handleFavorites(json))
+  .catch(() =>
+    console.log('fetch error')
+  )}
 
   userLogin(e){
     e.preventDefault()
@@ -31,9 +43,10 @@ export default class LoginPage extends Component {
   }
 
   changeHistory(userInfo){
-    const { handleLogin, history } = this.props;
+    const { handleLogin, history, handleFavorites } = this.props;
     if(userInfo) {
       handleLogin(userInfo)
+      this.getFavorites(userInfo.id)
       this.props.history.replace('/')
     } else {
       alert('Cannot find user, please check email and password')

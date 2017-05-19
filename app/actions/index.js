@@ -1,5 +1,4 @@
 import apiCall from '../helper/apiCall';
-// import cleaner from '../helper/cleaner';
 
 export const retrieveMovies = (movies) => {
   return {
@@ -29,7 +28,15 @@ export const logout = (users) => {
   }
 }
 
+export const showFavorites = (movies) => {
+  return {
+    type: 'SHOW_FAVES',
+    movies
+  }
+}
+
 export const getMovies = () => {
+  console.log('ggggggeting movies');
   return (dispatch) => {
     return apiCall.fetchMovies()
     .then((movies) => dispatch(retrieveMovies(movies)))
@@ -40,10 +47,14 @@ export const getMovies = () => {
 }
 
 
-
-export const showFavorites = () => {
-
-
+export const allFavorites = (userId) => {
+  console.log('getting favvvvvvs');
+  return fetch (`http://localhost:3000/api/users/${userId}/favorites`)
+  .then((resp) => resp.json())
+  .then((json) =>  console.log(json))
+  .catch(() =>
+    console.log('fetch error')
+  )
 }
 
 export const removeFavorites = () => {
