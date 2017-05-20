@@ -35,6 +35,13 @@ export const showFavorites = (movies) => {
   }
 }
 
+export const addFavorite = (movie) => {
+  return {
+    type: 'ADD_FAVE',
+    movie
+  }
+}
+
 export const getMovies = () => {
   console.log('ggggggeting movies');
   return (dispatch) => {
