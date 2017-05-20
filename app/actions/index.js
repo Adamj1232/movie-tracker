@@ -42,6 +42,13 @@ export const addFavorite = (movie) => {
   }
 }
 
+export const deleteFavorite = (movie) => {
+  return {
+    type: 'DELETE_FAVE',
+    movie
+  }
+}
+
 export const getMovies = () => {
   console.log('ggggggeting movies');
   return (dispatch) => {
