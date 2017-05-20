@@ -4,16 +4,26 @@ import PropTypes from 'prop-types';
 
 export const FavoriteCard = ({ title, poster_path, overview, release_date, vote_average, movie_id, user_id, handleDeleteFave, updateFavorites}) => {
 
+  const cleanFavData = (favData) => {
+    return  favData.reduce((favObj, movie)=> {
+      if(!favObj[movie.title]){
+        favObj[movie.title]=movie
+      }
+      console.log(favObj)
+      return favObj
+    }, {})
+  }
+
   const getFavorites = (userId) => {
       fetch (`api/users/${userId}/favorites`)
     .then((resp) => resp.json())
-    .then((json) =>  updateFavorites(json.data))
+    .then((json) =>  cleanFavData(json.data))
+    .then((cleanJSON) => updateFavorites(cleanJSON))
     .catch(() =>
       console.log('fetch error')
     )}
 
   const deleteFavorite = (user_id, movie_id) => {
-    console.log(user_id, movie_id)
     fetch(`api/users/${user_id}/favorites/${movie_id}`, {
       method: "DELETE",
       headers: {"Content-Type": "application/json"},

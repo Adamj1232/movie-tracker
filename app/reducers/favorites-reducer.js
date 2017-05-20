@@ -2,7 +2,7 @@
 const favoritesReducer = (state={}, action) => {
   switch (action.type) {
     case 'SHOW_FAVES':
-      return Object.assign({}, state, action.movies)
+      return Object.assign({}, action.movies)
     case 'ADD_FAVE':
       return Object.assign({}, state, { [action.movie.title]: action.movie})
   case 'DELETE_FAVE':
