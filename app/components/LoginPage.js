@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { allFavorites } from './actions/index'
 
 export default class LoginPage extends Component {
   constructor(props) {

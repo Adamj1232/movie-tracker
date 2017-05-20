@@ -9,7 +9,7 @@ export default class FavoritesGrid extends Component {
 
 
   render() {
-    const { favorites, userData, updateFavorites } = this.props;
+    const { favorites, userData, updateFavorites, handleDeleteFave } = this.props;
     if (!favorites) {
       return (
        <h4>You have no favorites selected...</h4>
@@ -27,6 +27,7 @@ export default class FavoritesGrid extends Component {
                        user_id={userData.id}
                        movie_id={favorites[movie].movie_id}
                        updateFavorites={updateFavorites}
+                       handleDeleteFave={handleDeleteFave}
                        key={index}/>
           )
         }) }

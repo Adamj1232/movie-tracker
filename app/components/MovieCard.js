@@ -3,7 +3,16 @@ import PropTypes from 'prop-types';
 // import './MovieCard.css';
 
 
-export const MovieCard = ({ title, poster_path, overview, release_date, vote_average, movie_id, user_id, handleAddFave}) => {
+export const MovieCard = ({ title, poster_path, overview, release_date, vote_average, movie_id, user_id, handleAddFave, favorites, handleDeleteFave}) => {
+
+  const favClick = (movieData) => {
+    return Object.keys(favorites).find(title => {
+      if(title === movieData.title){
+        console.log('mmmmmmmatch', favorites[title].movie_id)
+        return true
+      }
+    })
+  }
 
   const addFavorite = (movieData) => {
     console.log(movieData)
@@ -15,10 +24,29 @@ export const MovieCard = ({ title, poster_path, overview, release_date, vote_ave
     handleAddFave(movieData)
   }
 
+  const removeFavorite = (user_id, movie_id) => {
+    console.log(user_id, movie_id)
+    fetch(`api/users/${user_id}/favorites/${movie_id}`, {
+      method: "DELETE",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({user_id: user_id, movie_id})
+    })
+    handleDeleteFave({ title, poster_path, overview, release_date, vote_average, movie_id})
+
+  }
+
+  const clickHandler = (movieData) => {
+    if(favClick(movieData)){
+      removeFavorite(user_id, movie_id)
+    } else {
+      addFavorite(movieData)
+    }
+  }
+
   return (
     <article className="movie-card">
       <button
-          onClick={()=>{addFavorite({movie_id, user_id, title, poster_path, release_date, vote_average, overview})}}>
+          onClick={()=>{clickHandler({movie_id, user_id, title, poster_path, release_date, vote_average, overview})}}>
           Favorite
       </button>
       <img className="movie-poster"
