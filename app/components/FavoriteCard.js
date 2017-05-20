@@ -4,38 +4,38 @@ import PropTypes from 'prop-types';
 
 export const FavoriteCard = ({ title, poster_path, overview, release_date, vote_average, movie_id, user_id, handleDeleteFave, updateFavorites}) => {
 
-  const cleanFavData = (favData) => {
-    return  favData.reduce((favObj, movie)=> {
-      if(!favObj[movie.title]){
-        favObj[movie.title]=movie
-      }
-      console.log(favObj)
-      return favObj
-    }, {})
-  }
+  // const cleanFavData = (favData) => {
+  //   return  favData.reduce((favObj, movie)=> {
+  //     if(!favObj[movie.title]){
+  //       favObj[movie.title]=movie
+  //     }
+  //     console.log(favObj)
+  //     return favObj
+  //   }, {})
+  // }
+  //
+  // const getFavorites = (userId) => {
+  //     fetch (`api/users/${userId}/favorites`)
+  //   .then((resp) => resp.json())
+  //   .then((json) =>  cleanFavData(json.data))
+  //   .then((cleanJSON) => updateFavorites(cleanJSON))
+  //   .catch(() =>
+  //     console.log('fetch error')
+  //   )}
 
-  const getFavorites = (userId) => {
-      fetch (`api/users/${userId}/favorites`)
-    .then((resp) => resp.json())
-    .then((json) =>  cleanFavData(json.data))
-    .then((cleanJSON) => updateFavorites(cleanJSON))
-    .catch(() =>
-      console.log('fetch error')
-    )}
-
-  const deleteFavorite = (user_id, movie_id) => {
+  const deleteFavorite = (user_id, movie_id, title) => {
     fetch(`api/users/${user_id}/favorites/${movie_id}`, {
       method: "DELETE",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({user_id: user_id, movie_id})
     })
-    getFavorites(user_id)
+    handleDeleteFave({ title, poster_path, overview, release_date, vote_average, movie_id, user_id, handleDeleteFave, updateFavorites})
   }
 
   return (
     <article className="movie-card">
       <button
-          onClick={() => { deleteFavorite(user_id, movie_id) }}>
+          onClick={() => { deleteFavorite(user_id, movie_id, title) }}>
           Unfavorite
       </button>
       <img className="movie-poster"

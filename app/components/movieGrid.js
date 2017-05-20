@@ -9,7 +9,7 @@ export default class MovieGrid extends Component {
 
 
   render() {
-    const { movies, userData, handleAddFave, favorites, updateFavs } = this.props;
+    const { movies, userData, handleAddFave, favorites, updateFavs, handleDeleteFave } = this.props;
     if (!this.props.movies) {
       return (
        <h4>Guess theres nothing worth seeing....</h4>
@@ -29,7 +29,7 @@ export default class MovieGrid extends Component {
                        key={index}
                        handleAddFave={this.props.handleAddFave}
                        favorites={favorites}
-                       updateFavs={updateFavs}/>
+                       handleDeleteFave={handleDeleteFave}/>
           )
         }) }
       </section>

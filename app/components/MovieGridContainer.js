@@ -9,7 +9,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     handleAddFave: (movie) => dispatch(addFavorite(movie)),
-    updateFavs: (movies) => dispatch(showFavorites(movies))
+    handleDeleteFave: (movie) => dispatch(deleteFavorite(movie))
   }
 }
 
