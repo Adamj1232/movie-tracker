@@ -13,16 +13,6 @@ export const MovieCard = ({ title, poster_path, overview, release_date, vote_ave
       }
     })
   }
-  // 
-  // const cleanFavData = (favData) => {
-  //   return  favData.reduce((favObj, movie)=> {
-  //     if(!favObj[movie.title]){
-  //       favObj[movie.title]=movie
-  //     }
-  //     console.log(favObj)
-  //     return favObj
-  //   }, {})
-  // }
 
   const addFavorite = (movieData) => {
     console.log(movieData)
@@ -33,15 +23,6 @@ export const MovieCard = ({ title, poster_path, overview, release_date, vote_ave
     })
     handleAddFave(movieData)
   }
-
-  // const getFavorites = (userId) => {
-  //     fetch (`api/users/${userId}/favorites`)
-  //   .then((resp) => resp.json())
-  //   .then((json) =>  cleanFavData(json.data))
-  //   .then((cleanJSON) => updateFavs(cleanJSON))
-  //   .catch(() =>
-  //     console.log('fetch error')
-  //   )}
 
   const removeFavorite = (user_id, movie_id) => {
     console.log(user_id, movie_id)

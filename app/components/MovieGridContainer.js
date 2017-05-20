@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import MovieGrid from './MovieGrid'
-import { addFavorite } from '../actions/index.js'
+import { addFavorite, deleteFavorite } from '../actions/index.js'
 
 const mapStateToProps = (state) => {
   return { movies: state.movieReducer, userData: state.userReducer, favorites: state.favoritesReducer }
