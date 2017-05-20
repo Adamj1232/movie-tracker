@@ -16,7 +16,7 @@ getFavorites(userId){
   console.log(userId)
     fetch (`api/users/${userId}/favorites`)
   .then((resp) => resp.json())
-  .then((json) =>  handleFavorites(json))
+  .then((json) =>  handleFavorites(json.data))
   .catch(() =>
     console.log('fetch error')
   )}

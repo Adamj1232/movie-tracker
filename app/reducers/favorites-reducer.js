@@ -1,3 +1,4 @@
+
 const favoritesReducer = (state={}, action) => {
   switch (action.type) {
     case 'SHOW_FAVES':
