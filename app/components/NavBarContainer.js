@@ -3,7 +3,7 @@ import { NavBar } from './NavBar'
 import { logout, showFavorites } from '../actions/index'
 
 const mapStateToProps = (state) => {
-  return { user: state.userReducer }
+  return { user: state.userReducer, favorites: state.favoritesReducer }
 }
 
 const mapDispatchToProps=(dispatch) => {
@@ -14,7 +14,7 @@ const mapDispatchToProps=(dispatch) => {
   //   handleFavorites: (movies) => {
   //     dispatch(showFavorites(movies))
   // }
-}
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar)
