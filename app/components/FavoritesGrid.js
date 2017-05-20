@@ -28,6 +28,7 @@ export default class FavoritesGrid extends Component {
                        movie_id={favorites[movie].movie_id}
                        updateFavorites={updateFavorites}
                        handleDeleteFave={handleDeleteFave}
+                       favorites={favorites}
                        key={index}/>
           )
         }) }
