@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 // import './MovieCard.css';
 
 
-export const MovieCard = ({ title, poster_path, overview, release_date, vote_average, movie_id, user_id, handleAddFave, favorites, handleDeleteFave}) => {
-
+export const MovieCard = ({ title, poster_path, overview, release_date, vote_average, user_id, movie_id, userData, handleAddFave, favorites, handleDeleteFave}) => {
+  console.log(userData)
   const favClick = (movieData) => {
     return Object.keys(favorites).find(title => {
       if(title === movieData.title){
@@ -35,19 +35,33 @@ export const MovieCard = ({ title, poster_path, overview, release_date, vote_ave
 
   }
 
-  const clickHandler = (movieData) => {
-    if(favClick(movieData)){
+  const clickHandler = (movieData, userData) => {
+    console.log(userData)
+    const userArray = Object.keys(userData)
+    if (!userArray.length) {
+      alert('Please login to view favorites')
+    } else if  (favClick(movieData)){
       removeFavorite(user_id, movie_id)
     } else {
       addFavorite(movieData)
     }
   }
 
+  const checkIfFavorited = (title) => {
+    let favoriteClass = '';
+    if (Object.keys(favorites).includes(title)) {
+      favoriteClass = 'favorited';
+    } else {
+      favoriteClass = 'unfavorited'
+    }
+    return favoriteClass;
+  };
+
   return (
-    <article className="movie-card">
-      <button
-          onClick={()=>{clickHandler({movie_id, user_id, title, poster_path, release_date, vote_average, overview})}}>
-          Favorite
+    <article  className="movie-card">
+      <button className={checkIfFavorited(title)}
+              onClick={()=>{clickHandler({movie_id, user_id, title, poster_path, release_date, vote_average, overview}, userData)}}>
+          &#9734;
       </button>
       <img className="movie-poster"
            alt={title}

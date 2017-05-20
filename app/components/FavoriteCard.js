@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-export const FavoriteCard = ({ title, poster_path, overview, release_date, vote_average, movie_id, user_id, handleDeleteFave, updateFavorites}) => {
+export const FavoriteCard = ({ title, poster_path, overview, release_date, vote_average, movie_id, user_id, handleDeleteFave, updateFavorites, favorites}) => {
 
   // const cleanFavData = (favData) => {
   //   return  favData.reduce((favObj, movie)=> {
@@ -32,11 +32,21 @@ export const FavoriteCard = ({ title, poster_path, overview, release_date, vote_
     handleDeleteFave({ title, poster_path, overview, release_date, vote_average, movie_id, user_id, handleDeleteFave, updateFavorites})
   }
 
+  const checkIfFavorited = (title) => {
+    let favoriteClass = '';
+    if (Object.keys(favorites).includes(title)) {
+      favoriteClass = 'favorited';
+    } else {
+      favoriteClass = 'unfavorited'
+    }
+    return favoriteClass;
+  };
+
   return (
-    <article className="movie-card">
-      <button
-          onClick={() => { deleteFavorite(user_id, movie_id, title) }}>
-          Unfavorite
+    <article  className="movie-card">
+      <button className={checkIfFavorited(title)}
+              onClick={() => { deleteFavorite(user_id, movie_id, title) }}>
+          &#9734;
       </button>
       <img className="movie-poster"
            alt={title}
