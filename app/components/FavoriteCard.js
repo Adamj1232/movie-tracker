@@ -2,7 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-export const FavoriteCard = ({ title, poster_path, overview, release_date, vote_average, movie_id, user_id, handleDeleteFave}) => {
+export const FavoriteCard = ({ title, poster_path, overview, release_date, vote_average, movie_id, user_id, handleDeleteFave, updateFavorites}) => {
+
+  const getFavorites = (userId) => {
+      fetch (`api/users/${userId}/favorites`)
+    .then((resp) => resp.json())
+    .then((json) =>  updateFavorites(json.data))
+    .catch(() =>
+      console.log('fetch error')
+    )}
 
   const deleteFavorite = (user_id, movie_id) => {
     console.log(user_id, movie_id)
@@ -11,7 +19,7 @@ export const FavoriteCard = ({ title, poster_path, overview, release_date, vote_
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({user_id: user_id, movie_id})
     })
-    // handleDeleteFave(movieData)
+    getFavorites(user_id)
   }
 
   return (

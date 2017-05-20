@@ -10,13 +10,24 @@ export default class LoginPage extends Component {
     }
   }
 
+  cleanFavData(favData){
+    return  favData.reduce((favObj, movie)=> {
+      if(!favObj[movie.title]){
+        favObj[movie.title]=movie
+      }
+      console.log(favObj)
+      return favObj
+    }, {})
+  }
+
 
 getFavorites(userId){
   const { handleFavorites } = this.props;
   console.log(userId)
     fetch (`api/users/${userId}/favorites`)
   .then((resp) => resp.json())
-  .then((json) =>  handleFavorites(json.data))
+  .then((json) =>  this.cleanFavData(json.data))
+  .then((cleanJSON) =>  handleFavorites(cleanJSON))
   .catch(() =>
     console.log('fetch error')
   )}

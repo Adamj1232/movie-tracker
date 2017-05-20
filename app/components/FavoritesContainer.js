@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import FavoritesGrid from './FavoritesGrid'
-import { deleteFavorite } from '../actions/index'
+import { deleteFavorite, showFavorites } from '../actions/index'
 
 const mapStateToProps = (state) => {
   return { favorites: state.favoritesReducer, userData: state.userReducer }
@@ -8,9 +8,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps=(dispatch) => {
   return {
-    handleDeleteFave: (movie) => {
-      dispatch(deleteFavorite(movie))
-    }
+    handleDeleteFave: (movie) => dispatch(deleteFavorite(movie)),
+    updateFavorites: (movies) => dispatch(showFavorites(movies))
   }
 }
 
