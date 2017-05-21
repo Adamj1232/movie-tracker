@@ -7,11 +7,12 @@ describe('App component',()=>{
 
 
   it('should display sign in button if no user is signed in',()=>{
-    const wrapper = shallow(<App />)
-    console.log(wrapper)
+    const wrapper = shallow(<App/>)
+    // console.log(wrapper.debug())
+
   })
 
-  it('should clear the form value after click',()=>{
+  it('should clear the user input values after click',()=>{
 
   })
 
