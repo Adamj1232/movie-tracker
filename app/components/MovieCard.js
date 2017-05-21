@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 
 export const MovieCard = ({ title, poster_path, overview, release_date, vote_average, user_id, movie_id, userData, handleAddFave, favorites, handleDeleteFave}) => {
-  console.log(userData)
   const favClick = (movieData) => {
     return Object.keys(favorites).find(title => {
       if(title === movieData.title){
@@ -15,7 +14,6 @@ export const MovieCard = ({ title, poster_path, overview, release_date, vote_ave
   }
 
   const addFavorite = (movieData) => {
-    console.log(movieData)
     fetch('/api/users/favorites/new', {
       method: "POST",
       headers: {"Content-Type": "application/json"},
@@ -25,7 +23,6 @@ export const MovieCard = ({ title, poster_path, overview, release_date, vote_ave
   }
 
   const removeFavorite = (user_id, movie_id) => {
-    console.log(user_id, movie_id)
     fetch(`api/users/${user_id}/favorites/${movie_id}`, {
       method: "DELETE",
       headers: {"Content-Type": "application/json"},
@@ -36,7 +33,6 @@ export const MovieCard = ({ title, poster_path, overview, release_date, vote_ave
   }
 
   const clickHandler = (movieData, userData) => {
-    console.log(userData)
     const userArray = Object.keys(userData)
     if (!userArray.length) {
       alert('Please login to view favorites')
