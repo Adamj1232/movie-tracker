@@ -33,10 +33,19 @@ export default class CreateUser extends Component {
     const { name, email, password } = this.state;
     if(name === '' || email === '' || password === ''){
         return alert('Please fill out all fields')
+    } else if(!this.validateEmail(email)){
+        return alert('Please enter a valid email address')
     } else {
       this.addNewUser(e)
     }
   }
+
+  validateEmail(email) {
+  const validated = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  console.log(validated);
+  console.log(validated.test(email))
+  return validated.test(email);
+}
 
   changeRoute(){
     const { handleSubmit, history } = this.props
