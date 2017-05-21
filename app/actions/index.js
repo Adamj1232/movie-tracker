@@ -49,6 +49,12 @@ export const deleteFavorite = (movie) => {
   }
 }
 
+export const faveLogout = () => {
+  return {
+    type: 'FAVE_LOGOUT'
+  }
+}
+
 export const getMovies = () => {
   console.log('ggggggeting movies');
   return (dispatch) => {

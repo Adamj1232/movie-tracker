@@ -27,7 +27,7 @@ const userStatus = (user, handleLogout) => {
 
   let name = user.name
   let capsName = name.charAt(0).toUpperCase() + name.slice(1)
-  
+
   return (
     <section className='nav'>
       <div className="nav-bar">
@@ -37,7 +37,7 @@ const userStatus = (user, handleLogout) => {
       <NavLink to='/'
                activeClassName='nav-button'
                className='button'
-               onClick={ () => { handleLogout() }}>Sign Out</NavLink>
+               onClick={ () => { handleLogout(), handleFaveLogout() }}>Sign Out</NavLink>
       </div>
       <h2 className='user-name'>Welcome {capsName}</h2>
     </section>
