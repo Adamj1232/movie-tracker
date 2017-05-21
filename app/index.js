@@ -8,7 +8,7 @@ import { getMovies, allFavorites } from './actions/index'
 import { BrowserRouter as Router, browserHistory, Route } from 'react-router-dom';
 
 import rootReducer from './reducers/index'
-import AppContainer from './components/AppContainer';
+import AppContainer from './containers/AppContainer';
 
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

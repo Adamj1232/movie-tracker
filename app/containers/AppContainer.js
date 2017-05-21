@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import App from './app';
+import App from '../components/App';
 import { upcomingFilms } from '../actions/index'
 
 function mapStateToProps(state) {
