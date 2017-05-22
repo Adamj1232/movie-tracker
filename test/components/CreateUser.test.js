@@ -23,7 +23,6 @@ describe(' CreateUser', () => {
     const nameInput = wrapper.find('input').first()
     const emailInput = wrapper.find('input').at(1)
     const passWord = wrapper.find('input').last()
-    // console.log(passWord)
     nameInput.simulate('change', {
       target: {
         value: 'test'
