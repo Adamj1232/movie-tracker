@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import  {NavBar} from '../../app/components/NavBar.js';
+import  { NavBar } from '../../app/components/NavBar.js';
 import expect from 'expect';
 
 describe('NavBar component',()=>{
@@ -29,21 +29,19 @@ describe('NavBar component',()=>{
            expect(wrapper.find('.button').first().props().to).toEqual('/')
           })
 
-  it.only('should display user name after the user has signed in',()=>{
+  it('should display user name after the user has signed in',()=>{
     const wrapper = shallow(
       <NavBar
         user={{id:1 , name: 'test', password: 'test'}}
         favorites={{}}
         handleLogout={()=>{}}
       />)
-      console.log(wrapper.debug())
-      console.log(wrapper.)
+
+      console.log(wrapper.find('.user-name').props().children)
+      expect(wrapper.find('.user-name').props().children).toEqual(['Welcome ', 'Test'])
       // console.log(wrapper.find('.button').first().props().children)
       // console.log(wrapper.find('.button').last())
 
      })
-
-
-
 
 })

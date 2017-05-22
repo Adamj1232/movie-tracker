@@ -3,7 +3,7 @@ import { mount, shallow } from 'enzyme';
 import  {LoginPage} from '../../app/components/LoginPage.js';
 import expect from 'expect';
 
-describe('NavBar component',()=>{
+describe.skip('NavBar component',()=>{
 
   it('should have two input fields',()=>{
     const wrapper = shallow(
