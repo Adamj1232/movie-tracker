@@ -37,10 +37,9 @@ export const FavoriteCard = ({ title, poster_path, overview, release_date, vote_
 }
 
 
-// MovieCard.propTypes = {
-//   title: PropTypes.string.isRequired,
-//   poster_path: PropTypes.string.isRequired,
-//   overview: PropTypes.string.isRequired,
-//   release_date: PropTypes.string.isRequired,
-//   vote_average: PropTypes.number.isRequired,
-// }
+FavoriteCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  poster_path: PropTypes.string.isRequired,
+  overview: PropTypes.string.isRequired,
+  release_date: PropTypes.string.isRequired,
+}
