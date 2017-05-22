@@ -14,7 +14,6 @@ export default class LoginPage extends Component {
       if(!favObj[movie.title]){
         favObj[movie.title]=movie
       }
-      console.log(favObj)
       return favObj
     }, {})
   }
@@ -22,7 +21,6 @@ export default class LoginPage extends Component {
 
 getFavorites(userId){
   const { handleFavorites } = this.props;
-  console.log(userId)
     fetch (`api/users/${userId}/favorites`)
   .then((resp) => resp.json())
   .then((json) =>  this.cleanFavData(json.data))
@@ -76,12 +74,12 @@ getFavorites(userId){
   render() {
     return (
       <form>
-        <input  placeholder='please enter e-mail'
-                type='text'
-                value={this.state.email}
-                id = 'email'
-                onChange={(e)=>{
-                  this.setState({email:e.target.value.toLowerCase()})
+        <input placeholder='please enter e-mail'
+               type='text'
+               value={this.state.email}
+               id = 'email'
+               onChange={(e)=>{
+                this.setState({email:e.target.value.toLowerCase()})
         }}/>
         <input placeholder='please enter password'
                type= 'password'

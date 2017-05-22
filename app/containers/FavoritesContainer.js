@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import FavoritesGrid from './FavoritesGrid'
+import FavoritesGrid from '../components/FavoritesGrid'
 import { deleteFavorite, showFavorites } from '../actions/index'
 
 const mapStateToProps = (state) => {
