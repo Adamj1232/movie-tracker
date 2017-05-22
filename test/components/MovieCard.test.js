@@ -1,26 +1,51 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import MovieCard from '../../app/components/MovieCard';
-import { handleAddFave } from '../../app/reducers/favorites-reducer'
+import { mount, shallow } from 'enzyme';
+import  {MovieCard} from '../../app/components/MovieCard.js';
+import expect from 'expect';
 
-describe('MovieCard', () => {
-  const movie = {
-    poster_path: 'addressToSweetPoster',
-    title: 'Super Sweet Movie 1',
-    release_date: '2017-02-01',
-    overview: 'Super sweet movie about super dope stuff',
-    vote_average: 9.9
-  }
-
-  const favorites = {}
-
-  it('should render a movie card', () => {
-    let wrapper = shallow(<MovieCard title={movie.title} poster_path={movie.poster_path} overview={movie.overview} release_date={movie.release_date} vote_average={movie.vote_average} />)
-    console.log(wrapper);
-    expect(wrapper.find('.movie-card').length).toBe(1)
-
-    // expect(wrapper.find('.movie-title').text()).toBe('Super Sweet Movie 1')
-  })
+describe('MovieCard component',()=>{
 
 
-})
+    it('should display a favorites button',()=>{
+
+      const wrapper = shallow(
+        <MovieCard    favorites={{}}
+                      handleDeleteFave={()=>{}}
+                      movie_id={'test_movieId'}
+                      overview={'test_overview'}
+                      poster_path={'test_posterPath'}
+                      release_date={'test_release_date'}
+                      title={'test_title'}
+                      updateFavorites={()=>{}}
+                      user_id={1}
+        />)
+        console.log(wrapper.debug())
+        expect(wrapper.find('button').length).toEqual(1)
+        expect(wrapper.find('button').props().className).toEqual('unfavorited')
+
+
+
+        //  expect(wrapper.find('.button').first().props().children).toEqual('Login')
+        //  expect(wrapper.find('.button').first().props().to).toEqual('/Login')
+
+       })
+
+       it('should dispaly an image of favorited movie',()=>{
+
+         const wrapper = shallow(
+           <MovieCard favorites={{}}
+                         handleDeleteFave={()=>{}}
+                         movie_id={'test_movieId'}
+                         overview={'test_overview'}
+                         poster_path={'test_posterPath'}
+                         release_date={'test_release_date'}
+                         title={'test_title'}
+                         updateFavorites={()=>{}}
+                         user_id={1}
+           />)
+           console.log(wrapper.debug())
+           expect(wrapper.find('.movie-poster').length).toEqual(1)
+       })
+
+     })
+

@@ -73,7 +73,6 @@ describe(' CreateUser', () => {
     })
     submitButton.simulate('click', {
       preventDefault: ()=>{},
-      jest.fn()
     })
     await wrapper.update()
     console.log(wrapper.state())
