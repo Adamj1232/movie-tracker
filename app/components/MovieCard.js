@@ -7,7 +7,6 @@ export const MovieCard = ({ title, poster_path, overview, release_date, vote_ave
   const favClick = (movieData) => {
     return Object.keys(favorites).find(title => {
       if(title === movieData.title){
-        console.log('mmmmmmmatch', favorites[title].movie_id)
         return true
       }
     })

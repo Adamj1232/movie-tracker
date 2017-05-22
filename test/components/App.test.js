@@ -4,19 +4,12 @@ import App from '../../app/components/app.js';
 import expect from 'expect';
 
 describe('App component',()=>{
+  const wrapper = shallow(<App/>)
 
 
-  it('should display sign in button if no user is signed in',()=>{
-    const wrapper = shallow(<App/>)
-    // console.log(wrapper.debug())
-
+  it('should render the expected elements',()=>{
+    expect(wrapper.find('Route').length).toBe(4);
+    expect(wrapper.find('NavBarContainer').length).toBe(1);
   })
 
-  it('should clear the user input values after click',()=>{
-
-  })
-
-  it('should display user name and sign out button after the user has signed in',()=>{
-
-  })
 })
