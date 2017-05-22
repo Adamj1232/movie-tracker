@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import MovieGridContainer from './MovieGridContainer'
-import NavBarContainer from './NavBarContainer'
-import CreateUserContainer from './CreateUserContainer'
-import LoginPageContainer from './LoginPageContainer'
-import FavoritesContainer from './FavoritesContainer'
+import MovieGridContainer from '../containers/MovieGridContainer'
+import NavBarContainer from '../containers/NavBarContainer'
+import CreateUserContainer from '../containers/CreateUserContainer'
+import LoginPageContainer from '../containers/LoginPageContainer'
+import FavoritesContainer from '../containers/FavoritesContainer'
 import { Route, Link, Switch } from 'react-router-dom';
 
 

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { NavBar } from './NavBar'
+import { NavBar } from '../components/NavBar'
 import { logout, faveLogout } from '../actions/index'
 
 const mapStateToProps = (state) => {
