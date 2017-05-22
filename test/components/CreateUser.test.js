@@ -54,8 +54,7 @@ describe(' CreateUser', () => {
     const emailInput = wrapper.find('input').at(1)
     const passWord = wrapper.find('input').last()
     const submitButton = wrapper.find('.login-submit')
-      // console.log(submitButton)
-    // console.log(passWord)
+
     nameInput.simulate('change', {
       target: {
         value: 'test'
@@ -75,11 +74,6 @@ describe(' CreateUser', () => {
       preventDefault: ()=>{},
     })
     await wrapper.update()
-    console.log(wrapper.state())
     done()
   })
-
-// check the dom for the error
-// console log wrapper -- should see after state of calling fn in error alert
-// expect error header to populate
 });

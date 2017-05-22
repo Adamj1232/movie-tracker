@@ -6,25 +6,10 @@ import expect from 'expect';
 describe('App component',()=>{
   const wrapper = shallow(<App/>)
 
-
   it('should render the expected elements',()=>{
     expect(wrapper.find('Route').length).toBe(4);
-    expect(wrapper.find('NavBarContainer').length).toBe(1);
+    expect(wrapper.find('Connect(NavBar)').length).toBe(1);
+    expect(wrapper.find('Switch').length).toBe(1);
+    expect(wrapper.find('section').length).toBe(1);
   })
-
-  it('should clear the user input values after click',()=>{
-    const wrapper = shallow(
-      <NavBar
-        user={{id:1 , name: 'test', password: 'test'}}
-        favorites={{}}
-        handleLogout={()=>{}}
-      />)
-      console.log(wrapper.debug())
-     })
-
-    
-
-
-
-
 })
