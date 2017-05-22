@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import  {NavBar} from '../../app/components/NavBar.js';
+import  { NavBar } from '../../app/components/NavBar.js';
 import expect from 'expect';
 
 describe('NavBar component',()=>{
@@ -36,13 +36,10 @@ describe('NavBar component',()=>{
         favorites={{}}
         handleLogout={()=>{}}
       />)
-      // console.log(wrapper.debug())
+      expect(wrapper.find('.user-name').props().children).toEqual(['Welcome ', 'Test'])
       // console.log(wrapper.find('.button').first().props().children)
       // console.log(wrapper.find('.button').last())
 
      })
-
-
-
 
 })

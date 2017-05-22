@@ -3,7 +3,8 @@ import { mount, shallow } from 'enzyme';
 import  FavoritesGrid from '../../app/components/FavoritesGrid.js';
 import expect from 'expect';
 
-describe('FavoritesGrid component',()=>{
+describe.skip('FavoriteGrid component',()=>{
+
 
   it.skip('should render favorites card',()=>{
 
