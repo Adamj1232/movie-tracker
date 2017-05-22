@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import LoginPage from './LoginPage';
+import LoginPage from '../components/LoginPage';
 import { login, showFavorites } from '../actions'
 
 const mapStateToProps = (state) => {
