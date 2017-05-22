@@ -18,7 +18,7 @@ describe(' CreateUser', () => {
     // console.log(wrapper.state())
   })
 
-  it('should update state after on user input',()=>{
+  it('should update state after user input',()=>{
     const wrapper = shallow(<CreateUser/>)
     const nameInput = wrapper.find('input').first()
     const emailInput = wrapper.find('input').at(1)
@@ -43,7 +43,7 @@ describe(' CreateUser', () => {
     // console.log(wrapper.state())
   })
 
-  it('should check if user inputs are already in use', async (done)=>{
+  it.skip('should check if user inputs are already in use', async (done)=>{
     fetchMock.post('http://localhost:3000/api/users/new', {
       status: 500,
       body: {}
@@ -73,6 +73,7 @@ describe(' CreateUser', () => {
     })
     submitButton.simulate('click', {
       preventDefault: ()=>{},
+      jest.fn()
     })
     await wrapper.update()
     console.log(wrapper.state())

@@ -12,4 +12,19 @@ describe('App component',()=>{
     expect(wrapper.find('NavBarContainer').length).toBe(1);
   })
 
+  it('should clear the user input values after click',()=>{
+    const wrapper = shallow(
+      <NavBar
+        user={{id:1 , name: 'test', password: 'test'}}
+        favorites={{}}
+        handleLogout={()=>{}}
+      />)
+      console.log(wrapper.debug())
+     })
+
+    
+
+
+
+
 })

@@ -18,11 +18,8 @@ describe('NavBar component',()=>{
 
      })
 
-  it('should clear the user input values after click',()=>{
 
-     })
-
-  it('should display user name and sign out button after the user has signed in',()=>{
+  it('should display user name after the user has signed in',()=>{
     const wrapper = shallow(
       <NavBar
         user={{id:1 , name: 'test', password: 'test'}}
@@ -32,4 +29,17 @@ describe('NavBar component',()=>{
       // console.log(wrapper.find('.button').last())
 
      })
+     
+
+   it('should display sign out button after the user has signed in',()=>{
+       const wrapper = shallow(
+         <NavBar
+           user={{id:1 , name: 'test', password: 'test'}}
+           favorites={{}}
+           handleLogout={()=>{}}
+         />)
+         // console.log(wrapper.find('.button').last())
+
+        })
+
 })
