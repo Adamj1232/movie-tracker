@@ -36,13 +36,7 @@ describe('NavBar component',()=>{
         favorites={{}}
         handleLogout={()=>{}}
       />)
-<<<<<<< HEAD
-
-      console.log(wrapper.find('.user-name').props().children)
       expect(wrapper.find('.user-name').props().children).toEqual(['Welcome ', 'Test'])
-=======
-      // console.log(wrapper.debug())
->>>>>>> d6faadf76e457485efb21ad1bbd44c939700e92c
       // console.log(wrapper.find('.button').first().props().children)
       // console.log(wrapper.find('.button').last())
 
