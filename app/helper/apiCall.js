@@ -2,7 +2,6 @@ import APIKey from '../key'
 
 export const cleaner = (data) => {
   return data.results.reduce((acc, movie) => {
-    // console.log(movie.id)
     if (!acc[movie.title]) {
       acc[movie.title] = {
         title: movie.title,
@@ -16,7 +15,6 @@ export const cleaner = (data) => {
     return acc
   }, {})
 }
-
 
 export default class apiCall {
   static fetchMovies () {
