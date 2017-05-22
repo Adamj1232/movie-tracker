@@ -17,10 +17,12 @@ const userStatus = (user, handleLogout) => {
   if (!userKey.length) {
     return (
       <section className="nav-bar">
-        <h1> Movie</h1><h1 className='tracker'>Tracker</h1>
-        <NavLink to='/Login' activeClassName='nav-button' className='button'>Login</NavLink>
-        <NavLink to='/CreateAccount' activeClassName='nav-button' className='button'>Create Account</NavLink>
-        <NavLink to='/' activeClassName='nav-button' className='button'>Home</NavLink>
+        <h1>MOVIE<span className='tracker'> tracker</span></h1>
+        <div className="nav-links">
+          <NavLink to='/Login' activeClassName='nav-button' className='button'>Login</NavLink>
+          <NavLink to='/CreateAccount' activeClassName='nav-button' className='button'>Create Account</NavLink>
+          <NavLink to='/' activeClassName='nav-button' className='button'>Home</NavLink>
+        </div>
       </section>
     )
   }
@@ -31,13 +33,15 @@ const userStatus = (user, handleLogout) => {
   return (
     <section className='nav'>
       <div className="nav-bar">
-      <h1> Movie</h1><h1 className='tracker'>Tracker</h1>
-      <NavLink to='/' activeClassName='nav-button' className='button'>Home</NavLink>
-      <NavLink to='/Favorites' activeClassName='nav-button' className='button'>Favorites</NavLink>
-      <NavLink to='/'
-               activeClassName='nav-button'
-               className='button'
-               onClick={ () => { handleLogout(), handleFaveLogout() }}>Sign Out</NavLink>
+      <h1>MOVIE<span className='tracker'> tracker</span></h1>
+      <div className="nav-links">
+        <NavLink to='/' activeClassName='nav-button' className='button'>Home</NavLink>
+        <NavLink to='/Favorites' activeClassName='nav-button' className='button'>Favorites</NavLink>
+        <NavLink to='/'
+                 activeClassName='nav-button'
+                 className='button'
+                 onClick={ () => { handleLogout(), handleFaveLogout() }}>Sign Out</NavLink>
+      </div>
       </div>
       <h2 className='user-name'>Welcome {capsName}</h2>
     </section>
