@@ -5,7 +5,10 @@ var options = {
 };
 
 var pgp = require('pg-promise')(options);
-var connectionString = 'postgres://localhost:5432/users';
+// var connectionString = 'postgres://localhost:5432/users';
+pgp.pg.defaults.poolSize = 20;
+pgp.pg.defaults.ssl = true;
+var connectionString = (process.env.DATABASE_URL + '?ssl=true') || 'postgres://localhost:5432/users';
 var db = pgp(connectionString);
 
 function getAllUsers(req, res, next) {
