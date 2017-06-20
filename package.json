@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "MovieTracker",
   "engines": {
-    "node": "6.4.0",
+    "node": "6.9.5",
     "npm": "3.10.x"
   },
   "scripts": {
