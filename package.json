@@ -11,7 +11,7 @@
     "test:watch": "npm test -- --watch",
     "build": "webpack --config ./webpack.config.js",
     "dev-server": "webpack-dev-server --hot --inline --content-base --history-api-fallback",
-    "start": "node server.js"
+    "start": "npm build && node server.js"
   },
   "keywords": [],
   "author": "Taylor Moore",
