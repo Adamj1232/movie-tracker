@@ -14,13 +14,13 @@ export default class CreateUser extends Component {
     const { name, email, password } = this.state;
     fetch('/api/users/new', {
       method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({name, email, password})
+      headers: { 'Content-Type':'application/json' },
+      body: JSON.stringify({ name, email, password })
     })
     .then((resp) => {
       resp.status !== 200 ?
         alert('User already exists, please login') :
-        this.changeRoute()
+        this.changeRoute(email, password)
     })
 
     .catch((error) => {
@@ -41,14 +41,28 @@ export default class CreateUser extends Component {
   }
 
   validateEmail(email) {
-  const validated = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return validated.test(email);
-}
+    const validated = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  changeRoute(){
-    const { handleSubmit, history } = this.props
-    this.props.history.replace('/')
-    handleSubmit(this.state)
+    return validated.test(email);
+  }
+
+  getUserIdFromCreatAccount(email, password){
+    const { handleSubmit } = this.props
+
+    fetch('/api/users',{
+      method: 'POST',
+      headers: { 'Content-Type':'application/json' },
+      body:JSON.stringify({ email, password })
+    })
+    .then((resp)=> resp.json())
+    .then((user) => handleSubmit(user.data))
+  }
+
+  changeRoute(email, password){
+    const { history } = this.props
+
+    history.replace('/')
+    this.getUserIdFromCreatAccount(email, password)
   }
 
   render() {
@@ -58,25 +72,30 @@ export default class CreateUser extends Component {
                value={this.state.name}
                placeholder='please enter name'
                onChange={(e) => {
-                 this.setState({ name: e.target.value })}} />
+                 this.setState({ name: e.target.value })}}
+        />
+
         <input type='text'
                value={this.state.email}
                placeholder='please enter email'
                onChange={(e) => {
-                 this.setState({ email: e.target.value.toLowerCase() })}} />
+                 this.setState({ email: e.target.value.toLowerCase() })}}
+        />
+
         <input type='password'
                value={this.state.password}
                placeholder='please enter password'
                onChange={(e) => {
-                 this.setState({ password: e.target.value })}} />
+                 this.setState({ password: e.target.value })}}
+        />
+
         <button className = 'login-submit'
                 onClick={(e) => {
                   this.verifyInputFields(e)
-                }}>
-        Submit
+        }}>
+          Submit
         </button>
       </form>
-
     )
   }
 }

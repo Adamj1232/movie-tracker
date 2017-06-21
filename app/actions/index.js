@@ -64,11 +64,3 @@ export const getMovies = () => {
     )
   }
 }
-
-export const allFavorites = (userId) => {
-  return fetch (`http://localhost:3000/api/users/${userId}/favorites`)
-  .then((resp) => resp.json())
-  .catch(() =>
-    console.log('fetch error')
-  )
-}
