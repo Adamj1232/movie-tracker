@@ -28609,16 +28609,20 @@
 	      'section',
 	      { className: 'nav-bar' },
 	      _react2.default.createElement(
-	        'h1',
-	        null,
-	        'MOVIE',
+	        'div',
+	        { className: 'header' },
+	        _react2.default.createElement(
+	          'h1',
+	          { className: 'movie-header' },
+	          'MOVIE'
+	        ),
 	        _react2.default.createElement('img', { className: 'clapper',
 	          src: '../styles/images/clapper.png',
 	          alt: 'black and white clapperbox used when filming movies' }),
 	        _react2.default.createElement(
 	          'span',
 	          { className: 'tracker' },
-	          ' tracker'
+	          'tracker'
 	        )
 	      ),
 	      _react2.default.createElement(
@@ -28650,9 +28654,13 @@
 	      'div',
 	      { className: 'nav-bar' },
 	      _react2.default.createElement(
-	        'h1',
-	        null,
-	        'MOVIE',
+	        'div',
+	        { className: 'header' },
+	        _react2.default.createElement(
+	          'h1',
+	          { className: 'movie-header' },
+	          'MOVIE'
+	        ),
 	        _react2.default.createElement('img', { className: 'clapper',
 	          src: '../styles/images/clapper.png',
 	          alt: 'black and white clapperbox used when filming movies' }),

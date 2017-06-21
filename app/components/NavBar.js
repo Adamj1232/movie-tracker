@@ -23,13 +23,16 @@ const userStatus = (user, handleLogout) => {
   if (!userKey.length) {
     return (
       <section className="nav-bar">
-        <h1>MOVIE
-        <img className="clapper"
+        <div className='header'>
+          <h1 className='movie-header'>MOVIE</h1>
+          <img className="clapper"
              src="../styles/images/clapper.png"
              alt='black and white clapperbox used when filming movies'>
           </img>
-          <span className='tracker'> tracker</span>
-        </h1>
+          <span className='tracker'>
+            tracker
+          </span>
+        </div>
         <div className="nav-links">
           <NavLink to='/Login' activeClassName='nav-button' className='button'>Login</NavLink>
           <NavLink to='/CreateAccount' activeClassName='nav-button' className='button'>Create Account</NavLink>
@@ -42,7 +45,8 @@ const userStatus = (user, handleLogout) => {
   return (
     <section className='nav'>
       <div className="nav-bar">
-        <h1>MOVIE
+        <div className='header'>
+          <h1 className='movie-header'>MOVIE</h1>
           <img className="clapper"
              src="../styles/images/clapper.png"
              alt='black and white clapperbox used when filming movies'>
@@ -50,7 +54,7 @@ const userStatus = (user, handleLogout) => {
           <span className='tracker'>
             tracker
           </span>
-         </h1>
+        </div>
         <div className="nav-links">
           <NavLink to='/' activeClassName='nav-button' className='button'>Home</NavLink>
           <NavLink to='/Favorites' activeClassName='nav-button' className='button'>Favorites</NavLink>

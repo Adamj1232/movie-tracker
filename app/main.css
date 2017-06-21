@@ -10,6 +10,9 @@ body, #main {
   justify-content: center;
   align-items: center;
   margin: 0px;
+  background: -webkit-linear-gradient(right, #680606, #1e1e1e);
+  background: -o-linear-gradient(right, #680606, #1e1e1e);
+  background: linear-gradient(to left, #680606, #1e1e1e);
 }
 
 input {
@@ -54,6 +57,7 @@ h1 {
   color: white;
   margin: 10px 5px;
   letter-spacing: 5px;
+  text-shadow: 3px 3px 3px black;
 }
 
 h2 {
@@ -78,6 +82,7 @@ h2 {
   width: 260px;
   border: 1px solid black;
   background-color: black;
+  box-shadow: 4px 4px 4px black;
 }
 
 .movie-poster {
@@ -182,4 +187,5 @@ h2 {
   height: 70px;
   width: 70px;
   margin: 0 10px 0 5px;
+  text-shadow: 4px 4px 4px black;
 }
