@@ -28620,7 +28620,7 @@
 	          src: '../styles/images/clapper.png',
 	          alt: 'black and white clapperbox used when filming movies' }),
 	        _react2.default.createElement(
-	          'span',
+	          'h1',
 	          { className: 'tracker' },
 	          'tracker'
 	        )
@@ -28665,7 +28665,7 @@
 	          src: '../styles/images/clapper.png',
 	          alt: 'black and white clapperbox used when filming movies' }),
 	        _react2.default.createElement(
-	          'span',
+	          'h1',
 	          { className: 'tracker' },
 	          'tracker'
 	        )

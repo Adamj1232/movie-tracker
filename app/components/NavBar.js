@@ -29,9 +29,9 @@ const userStatus = (user, handleLogout) => {
              src="../styles/images/clapper.png"
              alt='black and white clapperbox used when filming movies'>
           </img>
-          <span className='tracker'>
+          <h1 className='tracker'>
             tracker
-          </span>
+          </h1>
         </div>
         <div className="nav-links">
           <NavLink to='/Login' activeClassName='nav-button' className='button'>Login</NavLink>
@@ -51,9 +51,9 @@ const userStatus = (user, handleLogout) => {
              src="../styles/images/clapper.png"
              alt='black and white clapperbox used when filming movies'>
           </img>
-          <span className='tracker'>
+          <h1 className='tracker'>
             tracker
-          </span>
+          </h1>
         </div>
         <div className="nav-links">
           <NavLink to='/' activeClassName='nav-button' className='button'>Home</NavLink>
