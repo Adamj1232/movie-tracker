@@ -87,7 +87,6 @@
 	
 	var store = (0, _redux.createStore)(_index3.default, devTools, (0, _redux.applyMiddleware)(_reduxThunk2.default));
 	
-	// store.dispatch(allFavorites())
 	store.dispatch((0, _index.getMovies)());
 	
 	_reactDom2.default.render(_react2.default.createElement(
@@ -24650,7 +24649,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.allFavorites = exports.getMovies = exports.faveLogout = exports.deleteFavorite = exports.addFavorite = exports.showFavorites = exports.logout = exports.login = exports.createUser = exports.retrieveMovies = undefined;
+	exports.getMovies = exports.faveLogout = exports.deleteFavorite = exports.addFavorite = exports.showFavorites = exports.logout = exports.login = exports.createUser = exports.retrieveMovies = undefined;
 	
 	var _apiCall = __webpack_require__(227);
 	
@@ -24721,14 +24720,6 @@
 	      return console.log('fetch2 error');
 	    });
 	  };
-	};
-	
-	var allFavorites = exports.allFavorites = function allFavorites(userId) {
-	  return fetch('http://localhost:3000/api/users/' + userId + '/favorites').then(function (resp) {
-	    return resp.json();
-	  }).catch(function () {
-	    return console.log('fetch error');
-	  });
 	};
 
 /***/ }),
@@ -28405,6 +28396,7 @@
 	          favorites = _props.favorites,
 	          handleDeleteFave = _props.handleDeleteFave;
 	
+	
 	      if (!this.props.movies) {
 	        return _react2.default.createElement(
 	          'h4',
@@ -28412,6 +28404,7 @@
 	          'Guess theres nothing worth seeing....'
 	        );
 	      }
+	
 	      return _react2.default.createElement(
 	        'section',
 	        { id: 'movie-grid' },
@@ -28427,7 +28420,8 @@
 	            userData: userData,
 	            handleAddFave: _this2.props.handleAddFave,
 	            favorites: favorites,
-	            handleDeleteFave: handleDeleteFave });
+	            handleDeleteFave: handleDeleteFave
+	          });
 	        })
 	      );
 	    }
@@ -28459,9 +28453,6 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	// import './MovieCard.css';
-	
-	
 	var MovieCard = exports.MovieCard = function MovieCard(_ref) {
 	  var title = _ref.title,
 	      poster_path = _ref.poster_path,
@@ -28474,6 +28465,7 @@
 	      handleAddFave = _ref.handleAddFave,
 	      favorites = _ref.favorites,
 	      handleDeleteFave = _ref.handleDeleteFave;
+	
 	
 	  var favClick = function favClick(movieData) {
 	    return Object.keys(favorites).find(function (title) {
@@ -28538,14 +28530,6 @@
 	      src: poster_path })
 	  );
 	};
-	
-	// MovieCard.propTypes = {
-	//   title: PropTypes.string.isRequired,
-	//   poster_path: PropTypes.string.isRequired,
-	//   overview: PropTypes.string.isRequired,
-	//   release_date: PropTypes.string.isRequired,
-	//   vote_average: PropTypes.number.isRequired,
-	// }
 
 /***/ }),
 /* 274 */
@@ -28613,6 +28597,13 @@
 	var userStatus = function userStatus(user, handleLogout) {
 	  var userKey = Object.keys(user);
 	
+	  var capsUserName = function capsUserName() {
+	    if (user.name) {
+	      var name = user.name;
+	      return name.charAt(0).toUpperCase() + name.slice(1);
+	    }
+	  };
+	
 	  if (!userKey.length) {
 	    return _react2.default.createElement(
 	      'section',
@@ -28648,9 +28639,6 @@
 	      )
 	    );
 	  }
-	
-	  var name = user.name;
-	  var capsName = name.charAt(0).toUpperCase() + name.slice(1);
 	
 	  return _react2.default.createElement(
 	    'section',
@@ -28697,7 +28685,7 @@
 	      'h2',
 	      { className: 'user-name' },
 	      'Welcome ',
-	      capsName
+	      capsUserName()
 	    )
 	  );
 	};
@@ -28791,7 +28779,7 @@
 	        headers: { 'Content-Type': 'application/json' },
 	        body: JSON.stringify({ name: name, email: email, password: password })
 	      }).then(function (resp) {
-	        resp.status !== 200 ? alert('User already exists, please login') : _this2.changeRoute();
+	        resp.status !== 200 ? alert('User already exists, please login') : _this2.changeRoute(email, password);
 	      }).catch(function (error) {
 	        console.log(error, 'user already exists');
 	      });
@@ -28817,17 +28805,33 @@
 	    key: 'validateEmail',
 	    value: function validateEmail(email) {
 	      var validated = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	
 	      return validated.test(email);
 	    }
 	  }, {
-	    key: 'changeRoute',
-	    value: function changeRoute() {
-	      var _props = this.props,
-	          handleSubmit = _props.handleSubmit,
-	          history = _props.history;
+	    key: 'getUserIdFromCreatAccount',
+	    value: function getUserIdFromCreatAccount(email, password) {
+	      var handleSubmit = this.props.handleSubmit;
 	
-	      this.props.history.replace('/');
-	      handleSubmit(this.state);
+	
+	      fetch('/api/users', {
+	        method: 'POST',
+	        headers: { 'Content-Type': 'application/json' },
+	        body: JSON.stringify({ email: email, password: password })
+	      }).then(function (resp) {
+	        return resp.json();
+	      }).then(function (user) {
+	        return handleSubmit(user.data);
+	      });
+	    }
+	  }, {
+	    key: 'changeRoute',
+	    value: function changeRoute(email, password) {
+	      var history = this.props.history;
+	
+	
+	      history.replace('/');
+	      this.getUserIdFromCreatAccount(email, password);
 	    }
 	  }, {
 	    key: 'render',
@@ -28842,19 +28846,22 @@
 	          placeholder: 'please enter name',
 	          onChange: function onChange(e) {
 	            _this3.setState({ name: e.target.value });
-	          } }),
+	          }
+	        }),
 	        _react2.default.createElement('input', { type: 'text',
 	          value: this.state.email,
 	          placeholder: 'please enter email',
 	          onChange: function onChange(e) {
 	            _this3.setState({ email: e.target.value.toLowerCase() });
-	          } }),
+	          }
+	        }),
 	        _react2.default.createElement('input', { type: 'password',
 	          value: this.state.password,
 	          placeholder: 'please enter password',
 	          onChange: function onChange(e) {
 	            _this3.setState({ password: e.target.value });
-	          } }),
+	          }
+	        }),
 	        _react2.default.createElement(
 	          'button',
 	          { className: 'login-submit',
@@ -29000,7 +29007,6 @@
 	        return _this3.changeHistory(user.data);
 	      }).catch(function (error) {
 	        alert('Cannot find user, please check email and password');
-	        console.log(error, 'cannot find user');
 	      });
 	      this.setState({ email: '',
 	        password: ''
@@ -29158,6 +29164,7 @@
 	          handleDeleteFave = _props.handleDeleteFave;
 	
 	      var faveArray = Object.keys(favorites);
+	
 	      if (!faveArray.length) {
 	        return _react2.default.createElement(
 	          'h4',
@@ -29165,6 +29172,7 @@
 	          'You have no favorites selected.'
 	        );
 	      }
+	
 	      return _react2.default.createElement(
 	        'section',
 	        { id: 'movie-grid' },
@@ -29194,7 +29202,7 @@
 /* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -29204,10 +29212,6 @@
 	var _react = __webpack_require__(2);
 	
 	var _react2 = _interopRequireDefault(_react);
-	
-	var _propTypes = __webpack_require__(187);
-	
-	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -29225,11 +29229,12 @@
 	
 	
 	  var deleteFavorite = function deleteFavorite(user_id, movie_id, title) {
-	    fetch('api/users/' + user_id + '/favorites/' + movie_id, {
+	    fetch("api/users/" + user_id + "/favorites/" + movie_id, {
 	      method: "DELETE",
 	      headers: { "Content-Type": "application/json" },
 	      body: JSON.stringify({ user_id: user_id, movie_id: movie_id })
 	    });
+	
 	    handleDeleteFave({ title: title, poster_path: poster_path, overview: overview, release_date: release_date, vote_average: vote_average, movie_id: movie_id, user_id: user_id, handleDeleteFave: handleDeleteFave, updateFavorites: updateFavorites });
 	  };
 	
@@ -29244,27 +29249,20 @@
 	  };
 	
 	  return _react2.default.createElement(
-	    'article',
-	    { className: 'movie-card' },
+	    "article",
+	    { className: "movie-card" },
 	    _react2.default.createElement(
-	      'button',
+	      "button",
 	      { className: checkIfFavorited(title),
 	        onClick: function onClick() {
 	          deleteFavorite(user_id, movie_id, title);
 	        } },
-	      '\u2606'
+	      "\u2606"
 	    ),
-	    _react2.default.createElement('img', { className: 'movie-poster',
+	    _react2.default.createElement("img", { className: "movie-poster",
 	      alt: title,
 	      src: poster_path })
 	  );
-	};
-	
-	FavoriteCard.propTypes = {
-	  title: _propTypes2.default.string.isRequired,
-	  poster_path: _propTypes2.default.string.isRequired,
-	  overview: _propTypes2.default.string.isRequired,
-	  release_date: _propTypes2.default.string.isRequired
 	};
 
 /***/ })
