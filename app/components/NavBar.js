@@ -13,11 +13,19 @@ export const NavBar = (props) => {
 const userStatus = (user, handleLogout) => {
   const userKey = Object.keys(user)
 
+  const capsUserName = () => {
+    if(user.name){
+      let name = user.name
+      return name.charAt(0).toUpperCase() + name.slice(1)
+    }
+  }
 
   if (!userKey.length) {
     return (
       <section className="nav-bar">
-        <h1>MOVIE<span className='tracker'> tracker</span></h1>
+        <h1>MOVIE
+          <span className='tracker'> tracker</span>
+        </h1>
         <div className="nav-links">
           <NavLink to='/Login' activeClassName='nav-button' className='button'>Login</NavLink>
           <NavLink to='/CreateAccount' activeClassName='nav-button' className='button'>Create Account</NavLink>
@@ -27,23 +35,25 @@ const userStatus = (user, handleLogout) => {
     )
   }
 
-  let name = user.name
-  let capsName = name.charAt(0).toUpperCase() + name.slice(1)
-
   return (
     <section className='nav'>
       <div className="nav-bar">
-      <h1>MOVIE<span className='tracker'> tracker</span></h1>
-      <div className="nav-links">
-        <NavLink to='/' activeClassName='nav-button' className='button'>Home</NavLink>
-        <NavLink to='/Favorites' activeClassName='nav-button' className='button'>Favorites</NavLink>
-        <NavLink to='/'
-                 activeClassName='nav-button'
-                 className='button'
-                 onClick={ () => { handleLogout(), handleFaveLogout() }}>Sign Out</NavLink>
+        <h1>MOVIE<span className='tracker'> tracker</span></h1>
+        <div className="nav-links">
+          <NavLink to='/' activeClassName='nav-button' className='button'>Home</NavLink>
+          <NavLink to='/Favorites' activeClassName='nav-button' className='button'>Favorites</NavLink>
+          <NavLink to='/'
+                   activeClassName='nav-button'
+                   className='button'
+                   onClick={ () => {
+                    handleLogout(),
+                    handleFaveLogout()
+                   }}>
+            Sign Out
+          </NavLink>
+        </div>
       </div>
-      </div>
-      <h2 className='user-name'>Welcome {capsName}</h2>
+      <h2 className='user-name'>Welcome { capsUserName() }</h2>
     </section>
   )
 }

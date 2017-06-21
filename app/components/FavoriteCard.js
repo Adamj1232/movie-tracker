@@ -1,16 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-
-export const FavoriteCard = ({ title, poster_path, overview, release_date, vote_average, movie_id, user_id, handleDeleteFave, updateFavorites, favorites}) => {
+export const FavoriteCard = ({ title, poster_path, overview, release_date, vote_average, movie_id, user_id, handleDeleteFave, updateFavorites, favorites }) => {
 
   const deleteFavorite = (user_id, movie_id, title) => {
-    fetch(`api/users/${user_id}/favorites/${movie_id}`, {
+    fetch(`api/users/${ user_id }/favorites/${ movie_id }`, {
       method: "DELETE",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({user_id: user_id, movie_id})
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ user_id: user_id, movie_id })
     })
-    handleDeleteFave({ title, poster_path, overview, release_date, vote_average, movie_id, user_id, handleDeleteFave, updateFavorites})
+
+    handleDeleteFave({ title, poster_path, overview, release_date, vote_average, movie_id, user_id, handleDeleteFave, updateFavorites })
   }
 
   const checkIfFavorited = (title) => {
@@ -25,21 +24,13 @@ export const FavoriteCard = ({ title, poster_path, overview, release_date, vote_
 
   return (
     <article  className="movie-card">
-      <button className={checkIfFavorited(title)}
+      <button className={ checkIfFavorited(title) }
               onClick={() => { deleteFavorite(user_id, movie_id, title) }}>
-          &#9734;
+        &#9734;
       </button>
       <img className="movie-poster"
            alt={title}
            src={poster_path} />
     </article>
   )
-}
-
-
-FavoriteCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  poster_path: PropTypes.string.isRequired,
-  overview: PropTypes.string.isRequired,
-  release_date: PropTypes.string.isRequired,
 }
