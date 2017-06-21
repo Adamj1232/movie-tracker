@@ -12,6 +12,59 @@ body, #main {
   margin: 0px;
 }
 
+input {
+  display: inherit;
+  margin: 3%;
+  height: 30px;
+  width: 65%;
+  background-color: transparent;
+  color: white;
+  padding-left: 5px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5%;
+  margin: 5% 15%;
+  background-color: rgba(0, 0, 0, 0.65);
+}
+
+section {
+  width: 100%;
+}
+
+button {
+  justify-content: center;
+  text-align: center;
+  display: inherit;
+  height: 27px;
+  width: 57px;
+  background-color: transparent;
+  color: white;
+  margin: 5px;
+}
+
+h1 {
+  font-size: 50px;
+  color: white;
+  margin: 5px;
+  letter-spacing: 10px;
+}
+
+h2 {
+  color: white;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+#movie-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .movie-card {
   display: flex;
   flex-direction: column;
@@ -19,14 +72,14 @@ body, #main {
   justify-content: center;
   padding-bottom: 10px;
   margin: 10px;
-  width: 280px;
+  width: 260px;
   border: 1px solid black;
   background-color: black;
 }
 
 .movie-poster {
-  height: 330px;
-  margin-bottom: 10px;
+  height: 340px;
+  margin-bottom: 5px;
 }
 
 .nav-bar {
@@ -44,26 +97,15 @@ body, #main {
 .nav-bar {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center
+  width: 100%
 }
 
 .nav-links {
   display: flex;
-  justify-content: space-around;
-}
-
-h1 {
-  font-size: 50px;
-  color: white;
-  margin: 5px;
-  letter-spacing: 15px;
-}
-
-h2 {
-  color: white;
-  font-size: 40px;
-  font-weight: 700;
+  justify-content: center;
+  background-color: rgb(9, 9, 9);
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .button {
@@ -75,7 +117,6 @@ h2 {
 .button:hover {
   background-color: darkred;
   border: 1px solid darkred;
-
 }
 
 .tracker {
@@ -91,71 +132,49 @@ h2 {
 }
 
 .unfavorited {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: gray;
   border: none;
   border-radius: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  font-weight: bold;
   color: black;
   height: 40px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .unfavorited:hover {
-  background-color: #eadf3f;
-  color: darkred;
+  background-color: #680606;
+  color: white;
+}
+
+.unfavorited:focus, .favorited:focus {
+  outline: none;
 }
 
 .favorited {
-  background-color: #eadf3f;
-  color: darkred;
-  border: none;
-  border-radius: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 25px;
+  background-color: #eadf3f;
+  outline: none;
+  color: darkred;
+  border: none;
   font-size: 24px;
   font-weight: bold;
   height: 40px
 }
 
-#movie-grid {
+.heading {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  margin-top: 10px;
 }
 
-input {
-  display: inherit;
-  margin: 3%;
-  height: 30px;
-  width: 65%;
-  background-color: transparent;
-  color: white;
-}
-
-button {
-  display: inherit;
-  text-align: center;
-  height: 27px;
-  width: 57px;
-  background-color: transparent;
-  color: white;
-  justify-content: center;
-  margin: 10px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 15%;
-  margin:6%;
-  background-color: rgba(0, 0, 0, 0.65);
-}
-
-input {
-  padding-left: 5px;
+.clapper {
+  height: 60px;
+  width: 60px;
+  margin: 0 15px 0 5px;
 }
