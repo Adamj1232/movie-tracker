@@ -28612,6 +28612,9 @@
 	        'h1',
 	        null,
 	        'MOVIE',
+	        _react2.default.createElement('img', { className: 'clapper',
+	          src: '../styles/images/clapper.png',
+	          alt: 'black and white clapperbox used when filming movies' }),
 	        _react2.default.createElement(
 	          'span',
 	          { className: 'tracker' },
@@ -28650,10 +28653,13 @@
 	        'h1',
 	        null,
 	        'MOVIE',
+	        _react2.default.createElement('img', { className: 'clapper',
+	          src: '../styles/images/clapper.png',
+	          alt: 'black and white clapperbox used when filming movies' }),
 	        _react2.default.createElement(
 	          'span',
 	          { className: 'tracker' },
-	          ' tracker'
+	          'tracker'
 	        )
 	      ),
 	      _react2.default.createElement(
