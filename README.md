@@ -1,66 +1,31 @@
-# Movie Tracker
+## Movie Tracker
 
-  This project is working off the The Movie DB API (https://www.themoviedb.org/documentation/api - note you'll need to go create an account to get an API key). The idea of the project is to be able to sign in as a user and save favorite movies. Pretty simple right? HA HA not!
+## Website Details
+Built to practice Redux and become acquainted with Node, PostgresSQL, Express, this app consumes The Movie Database API and
+allows users to mark and save their favorite films.
 
-  Bc this is still in beta here is what you'll need to know.
-  * Using PostgreSQL
-  * Setting up steps:
-    * `npm install`
-    * `createdb` - if you don't have postgresSQl go install it here: http://postgresapp.com/ 
-    * `psql -f ./database/users.sql`
-    * `npm start` - visit `/api/users` - should see a json response.
-  * 2 APIs - MovieDB and your very own api
-  * Fetch upcoming movies from MovieDB
+[Movie Tracker](https://movie--tracker.herokuapp.com/)
+* **Create User & User sign in is not yet secure via OAuth. To test use the application, sign in with the below credentials.**
+* **Default Email** - test@test.com
+* **Default Password** - password
 
+## Reflection
+  - This project was a 3 person group project and our first introduction to React Router & Redux. We had around 6 days to work together and produce an operational application.
+  - We set out to build an application for users to log in and view the most recently released movies. Once the user is logged in they are able to favorite multiple movies which would be saved to their account. 
+  - We used Node, Express and SQL tables to store the users data and favorited movies via our own API's with the assistance of PostgreSQL
 
-### API
-  Hopefully you will be using fetch to make all your api calls. If you are making a post request note that you will need to pass in headers - with a `'Content-Type': 'application/json'`. Additionally you will need to pass any any required fields into the body.
+## Resources
+  - [The Moviedb.org API](https://www.themoviedb.org/documentation/api)
 
-###### Users
+## Project Screen Shot(s)
 
- * ##### Sign In `/api/users`
+![](http://recordit.co/SloFcxUfk7/gif/notify)   
 
-  To sign in you will need to pass in *email* and *password* to the *body*.
-  Emails should be sent in all lowercase. - ex: `{..., body: {email: 'tim@aol.com', password: 'password'} }`
-  The database starts off with a single user inside. -> { email: tman2272@aol.com password: password }. Keep in mind the response will send the entire user back.
+## Installation and Setup Instructions
 
-* ##### Create Account - `/api/users/new`
-  Creating an account must have all input fields filled in (name, email, password)
-  You must send all three into the body. Passwords are case sensitive.
-  Keep in mind the response only gives the new user ID.
-
-* ##### Add Favorite - `/users/favorites/new`
-  To save a favorite you must send into the body: movie_id, user_id and title, poster_path, release_date, vote_average, overview.
-  Keep in mind the response only gives the new favorite id
-
-* ##### Receive All Favorites - `/users/:id/favorites`
-  To get a users favorite movies you need to send in the user ID through the params. This will return an array favorite objects.
-
-* ##### Delete a Favorite - `/users/:id/favorites/:favID`
-  To delete a users favorite you must send in the users id and id of the movie.
-
-### Iterations
-
-##### Iteration 0: Pull in movie API
-  * Pull most recent movies from MovieDB API.
-  * Display each movie on root index `/`
-
-##### Iteration 1: Sign In / Sign Out Functionality
-  * Be able to sign in on page `/login` and redirect user to `/`
-    * Flash "Email and Password do not match" - if password is incorrect
-  * Ability to create a user.
-    * Flash "Email has already been used" - if email has been taken
-  * The user has the ability to sign out. 
-  
-##### Iteration 2: Favorites
-  * Each movie should be displayed with a favorite button.
-  * If the user is not signed in and clicks on a favorite button the user will be prompted with the request to create an account.
-  * Validate favorites before adding to db. Aka does that user already have the movie stored as favorites. There should be no duplicates. 
-  * If the user visits `/favorites` they should see a list of all their favorite movies.
-  * The user should be able to delete favorites from `/favorites` or `/`.
-  * Favorite movies should have a visual indication on `/`.
-
-Extensions:
-  * A user stays signed in after refreshing the page. *Hint:* You will probably use localStorage. 
-  * Should only take real email addresses *Hint:* Look into regular expressions
-  
+* `git clone`
+* `create db` - if you don't have postgresSQL go install it here: http://postgresapp.com/
+* Follow the installation instructions for postgresSQL from website
+* Start postgresSQL server
+* `npm install`
+* `npm start`
