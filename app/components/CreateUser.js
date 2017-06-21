@@ -42,7 +42,7 @@ export default class CreateUser extends Component {
 
   validateEmail(email) {
     const validated = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    
+
     return validated.test(email);
   }
 
@@ -93,7 +93,7 @@ export default class CreateUser extends Component {
                 onClick={(e) => {
                   this.verifyInputFields(e)
         }}>
-          Submit
+          Create
         </button>
       </form>
     )
