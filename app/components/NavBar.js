@@ -24,6 +24,10 @@ const userStatus = (user, handleLogout) => {
     return (
       <section className="nav-bar">
         <h1>MOVIE
+        <img className="clapper"
+             src="../styles/images/clapper.png"
+             alt='black and white clapperbox used when filming movies'>
+          </img>
           <span className='tracker'> tracker</span>
         </h1>
         <div className="nav-links">
@@ -38,7 +42,15 @@ const userStatus = (user, handleLogout) => {
   return (
     <section className='nav'>
       <div className="nav-bar">
-        <h1>MOVIE<span className='tracker'> tracker</span></h1>
+        <h1>MOVIE
+          <img className="clapper"
+             src="../styles/images/clapper.png"
+             alt='black and white clapperbox used when filming movies'>
+          </img>
+          <span className='tracker'>
+            tracker
+          </span>
+         </h1>
         <div className="nav-links">
           <NavLink to='/' activeClassName='nav-button' className='button'>Home</NavLink>
           <NavLink to='/Favorites' activeClassName='nav-button' className='button'>Favorites</NavLink>
