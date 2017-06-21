@@ -19,15 +19,16 @@ export default class LoginPage extends Component {
   }
 
 
-getFavorites(userId){
-  const { handleFavorites } = this.props;
-    fetch (`api/users/${userId}/favorites`)
-  .then((resp) => resp.json())
-  .then((json) =>  this.cleanFavData(json.data))
-  .then((cleanJSON) =>  handleFavorites(cleanJSON))
-  .catch(() =>
-    console.log('fetch error')
-  )}
+  getFavorites(userId){
+    const { handleFavorites } = this.props;
+      fetch (`api/users/${userId}/favorites`)
+    .then((resp) => resp.json())
+    .then((json) =>  this.cleanFavData(json.data))
+    .then((cleanJSON) =>  handleFavorites(cleanJSON))
+    .catch(() =>
+      console.log('fetch error')
+    )
+  }
 
   userLogin(e){
     e.preventDefault()
@@ -35,15 +36,14 @@ getFavorites(userId){
 
     fetch('/api/users',{
       method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body:JSON.stringify({ email, password})
+      headers: { 'Content-Type':'application/json' },
+      body:JSON.stringify({ email, password })
     })
     .then((resp)=> resp.json())
     .then((user) => this.changeHistory(user.data))
 
     .catch((error) => {
       alert('Cannot find user, please check email and password')
-      console.log(error, 'cannot find user')
     })
     this.setState({ email: '',
                     password: ''
@@ -93,7 +93,6 @@ getFavorites(userId){
           Login
         </button>
       </form>
-
     )
   }
 }

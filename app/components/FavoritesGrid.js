@@ -11,11 +11,13 @@ export default class FavoritesGrid extends Component {
   render() {
     const { favorites, userData, updateFavorites, handleDeleteFave } = this.props;
     const faveArray = Object.keys(favorites)
+
     if (!faveArray.length) {
       return (
        <h4>You have no favorites selected.</h4>
       )
     }
+
     return (
       <section id="movie-grid">
         { Object.keys(favorites).map((movie, index) => {
@@ -32,7 +34,7 @@ export default class FavoritesGrid extends Component {
                        favorites={favorites}
                        key={index}/>
           )
-        }) }
+        })}
       </section>
     )
   }
