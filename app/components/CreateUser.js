@@ -93,7 +93,7 @@ export default class CreateUser extends Component {
                 onClick={(e) => {
                   this.verifyInputFields(e)
         }}>
-          Submit
+          Create
         </button>
       </form>
     )
