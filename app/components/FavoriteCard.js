@@ -1,15 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-
-export const FavoriteCard = ({ title, poster_path, overview, release_date, vote_average, movie_id, user_id, handleDeleteFave, updateFavorites, favorites}) => {
+export const FavoriteCard = ({ title, poster_path, overview, release_date, vote_average, movie_id, user_id, handleDeleteFave, updateFavorites, favorites }) => {
 
   const deleteFavorite = (user_id, movie_id, title) => {
     fetch(`api/users/${ user_id }/favorites/${ movie_id }`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({user_id: user_id, movie_id})
+      body: JSON.stringify({ user_id: user_id, movie_id })
     })
+
     handleDeleteFave({ title, poster_path, overview, release_date, vote_average, movie_id, user_id, handleDeleteFave, updateFavorites })
   }
 
@@ -34,12 +33,4 @@ export const FavoriteCard = ({ title, poster_path, overview, release_date, vote_
            src={poster_path} />
     </article>
   )
-}
-
-
-FavoriteCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  poster_path: PropTypes.string.isRequired,
-  overview: PropTypes.string.isRequired,
-  release_date: PropTypes.string.isRequired,
 }
