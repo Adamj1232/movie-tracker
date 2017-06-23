@@ -19,7 +19,7 @@ Try [Movie Tracker](https://movie--tracker.herokuapp.com/)
 
 ## Project Screen Shot(s)
 
-![](http://recordit.co/NFwl7aF62a)   
+![](http://g.recordit.co/7OnaKQKKsg.gif)   
 
 ## Installation and Setup Instructions
 
