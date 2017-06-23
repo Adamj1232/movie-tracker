@@ -250,10 +250,10 @@ h2 {
   z-index: 100;
   opacity: 0;
   overflow: auto;
-  top: 50%;
+  top: 48.9%;
   left: 50%;
   width: 101%;
-  height: 101%;
+  height: 98%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%)
 }
