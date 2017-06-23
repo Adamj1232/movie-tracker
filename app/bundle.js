@@ -28514,6 +28514,10 @@
 	    return favoriteClass;
 	  };
 	
+	  var styleFromLength = function styleFromLength(overview) {
+	    return overview.length > 340 ? 'longOverviewDiv' : 'overviewDiv';
+	  };
+	
 	  return _react2.default.createElement(
 	    'article',
 	    { className: 'movie-card' },
@@ -28525,9 +28529,47 @@
 	        } },
 	      '\u2606'
 	    ),
-	    _react2.default.createElement('img', { className: 'movie-poster',
-	      alt: title,
-	      src: poster_path })
+	    _react2.default.createElement(
+	      'span',
+	      { className: 'overviewSpan' },
+	      _react2.default.createElement('img', { className: 'movie-poster',
+	        alt: title,
+	        src: poster_path }),
+	      _react2.default.createElement(
+	        'div',
+	        { className: styleFromLength(overview) },
+	        _react2.default.createElement(
+	          'h4',
+	          { className: 'overviewHeader top' },
+	          'OVERVIEW'
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          { className: 'overview' },
+	          overview
+	        ),
+	        _react2.default.createElement(
+	          'h4',
+	          { className: 'overviewHeader' },
+	          'RELEASE DATE'
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          { className: 'overview' },
+	          release_date
+	        ),
+	        _react2.default.createElement(
+	          'h4',
+	          { className: 'overviewHeader' },
+	          'VOTE AVERAGE'
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          { className: 'overview' },
+	          vote_average
+	        )
+	      )
+	    )
 	  );
 	};
 
