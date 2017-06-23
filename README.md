@@ -4,7 +4,7 @@
 Built to practice Redux and become acquainted with Node, PostgresSQL, Express, this app consumes The Movie Database API and
 allows users to mark and save their favorite films.
 
-[Movie Tracker](http://recordit.co/NFwl7aF62a)
+Try [Movie Tracker](https://movie--tracker.herokuapp.com/)
 * **Create User & User sign in is not yet secure via OAuth. To test use the application, sign in with the below credentials.**
 * **Default Email** - test@test.com
 * **Default Password** - password
@@ -19,7 +19,7 @@ allows users to mark and save their favorite films.
 
 ## Project Screen Shot(s)
 
-![](http://recordit.co/SloFcxUfk7/gif/notify)   
+![](http://recordit.co/NFwl7aF62a)   
 
 ## Installation and Setup Instructions
 
